@@ -544,3 +544,5 @@ legend(
   lwd = 2
 )
 ```
+
+4.Kết luận
