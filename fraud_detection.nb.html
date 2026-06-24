@@ -1765,190 +1765,169 @@ dữ liệu chưa gán nhãn. Nội dung chính bao gồm:</p>
 <h2>1.1. Import datdata</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5mcmF1ZF9kZiA8LSByZWFkX2NzdihcXEM6L1VzZXJzL2FkbWluL09uZURyaXZlIC0gVEhQVCBMw6ogSOG7k25nIFBob25nL1BvcnRmb2xpby9kYXRhL2JhbmtpbmdfdHJhbnNhY3Rpb25zLmNzdlxcKVxuaGVhZChmcmF1ZF9kZilcbmBgYFxuYGBgIn0= -->
-<pre class="r"><code>```r
-library(tidyverse)
-fraud_df &lt;- read_csv(\C:/Users/admin/OneDrive - THPT Lê Hồng Phong/Portfolio/data/banking_transactions.csv\)
-head(fraud_df)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Overview về bộ dữ liệu
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3RyKGZyYXVkX2RmKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-str(fraud_df)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoic3BjX3RibF8gWzEwLDAwMCDDlyAyMF0gKFMzOiBzcGVjX3RibF9kZi90YmxfZGYvdGJsL2RhdGEuZnJhbWUpXG4gJCB0cmFuc2FjdGlvbl9pZCAgICAgICAgICAgICAgICA6IG51bSBbMToxMDAwMF0gMWUrMDYgMWUrMDYgMWUrMDYgMWUrMDYgMWUrMDYgLi4uXG4gJCB0cmFuc2FjdGlvbl9hbW91bnQgICAgICAgICAgICA6IG51bSBbMToxMDAwMF0gMTc4MjkgMTY0MDIgOTY3OCAxOTAxMyAxMzgzNSAuLi5cbiAkIGxvZ2luX2F0dGVtcHRzICAgICAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSA0IDEgOCA1IDMgOSA1IDcgNyAxIC4uLlxuICQgZGV2aWNlX3Jpc2tfc2NvcmUgICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDEyIDM0LjMgNjcuOCAxNy44IDg4LjkgODEuNSAxNy4yIDQ2LjYgMTUuOSA4NC41IC4uLlxuICQgdHJhbnNmZXJfZnJlcXVlbmN5ICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDEzIDE3IDM5IDQyIDYzIDU1IDc1IDM0IDM3IDYxIC4uLlxuICQgYW5vbWFseV9zY29yZSAgICAgICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDAuMzcgMC4yNiAwLjE1IDAuNTUgMC4yNCAwLjI0IDAuNTYgMC40MiAwLjIgMC4zOCAuLi5cbiAkIGFjY291bnRfYWdlX2RheXMgICAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSAyMzU0IDMxODEgMTM5MCAzNzE2IDQ2OTQgLi4uXG4gJCB0cmFuc2FjdGlvbl90aW1lX2hvdXIgICAgICAgICA6IG51bSBbMToxMDAwMF0gMjIgMTcgMyAxNiAxNiAxMiA4IDQgMTEgMTQgLi4uXG4gJCBmYWlsZWRfdHJhbnNhY3Rpb25zX2xhc3RfMzBkICA6IG51bSBbMToxMDAwMF0gMjUgMTUgMiA2IDEwIDAgMTggMTMgMTMgMTcgLi4uXG4gJCBhdmdfbW9udGhseV9iYWxhbmNlICAgICAgICAgICA6IG51bSBbMToxMDAwMF0gMTEyNzYwIDExODkwMCA0MDgxNjkgODA3NzIgMzgyMjY1IC4uLlxuICQgZGFpbHlfdHJhbnNhY3Rpb25fY291bnQgICAgICAgOiBudW0gWzE6MTAwMDBdIDYzIDgzIDkgNzggMTcgODUgMTIgNjMgMTA0IDE3IC4uLlxuICQgZ2VvX2Rpc3RhbmNlX2ttICAgICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDMxODkgODM5IDM5MzggMTExMTEgMzE3MSAuLi5cbiAkIHNlc3Npb25fZHVyYXRpb25fbWludXRlcyAgICAgIDogbnVtIFsxOjEwMDAwXSA5MiA2MyA4MCAxMSA4NyA5OSA5NyAyMCAyMCAzNCAuLi5cbiAkIHRyYW5zYWN0aW9uX3ZlbG9jaXR5X3Njb3JlICAgIDogbnVtIFsxOjEwMDAwXSA3MS44IDExLjggMzUuNyA3NC44IDAgNDMgNTAuNiA5Ny43IDczIDQ3LjIgLi4uXG4gJCBwYXltZW50X2NoYW5uZWwgICAgICAgICAgICAgICA6IGNociBbMToxMDAwMF0gXFxQT1MgVGVybWluYWxcXCBcXFdlYiBCYW5raW5nXFwgXFxBVE1cXCBcXE1vYmlsZSBBcHBcXCAuLi5cbiAkIGF1dGhlbnRpY2F0aW9uX3R5cGUgICAgICAgICAgIDogY2hyIFsxOjEwMDAwXSBcXE9UUFxcIFxcQmlvbWV0cmljXFwgXFxPVFBcXCBcXE9UUFxcIC4uLlxuICQgY2FyZF9wcmVzZW50X2ZsYWcgICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDEgMCAxIDEgMSAwIDEgMSAxIDAgLi4uXG4gJCBpbnRlcm5hdGlvbmFsX3RyYW5zYWN0aW9uX2ZsYWc6IG51bSBbMToxMDAwMF0gMSAwIDAgMSAwIDAgMCAxIDEgMSAuLi5cbiAkIHN1c3BpY2lvdXNfaXBfZmxhZyAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSAxIDEgMSAwIDAgMSAwIDAgMCAxIC4uLlxuICQgZnJhdWRfZmxhZyAgICAgICAgICAgICAgICAgICAgOiBsb2dpIFsxOjEwMDAwXSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSAuLi5cbiAtIGF0dHIoKiwgXFxzcGVjXFwpPVxuICAuLiBjb2xzKFxuICAuLiAgIHRyYW5zYWN0aW9uX2lkID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIHRyYW5zYWN0aW9uX2Ftb3VudCA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBsb2dpbl9hdHRlbXB0cyA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBkZXZpY2Vfcmlza19zY29yZSA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICB0cmFuc2Zlcl9mcmVxdWVuY3kgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgYW5vbWFseV9zY29yZSA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBhY2NvdW50X2FnZV9kYXlzID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBmYWlsZWRfdHJhbnNhY3Rpb25zX2xhc3RfMzBkID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIGF2Z19tb250aGx5X2JhbGFuY2UgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgZGFpbHlfdHJhbnNhY3Rpb25fY291bnQgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgZ2VvX2Rpc3RhbmNlX2ttID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIHNlc3Npb25fZHVyYXRpb25fbWludXRlcyA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICB0cmFuc2FjdGlvbl92ZWxvY2l0eV9zY29yZSA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBwYXltZW50X2NoYW5uZWwgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgYXV0aGVudGljYXRpb25fdHlwZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBjYXJkX3ByZXNlbnRfZmxhZyA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBpbnRlcm5hdGlvbmFsX3RyYW5zYWN0aW9uX2ZsYWcgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgc3VzcGljaW91c19pcF9mbGFnID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIGZyYXVkX2ZsYWcgPSBjb2xfbG9naWNhbCgpXG4gIC4uIClcbiAtIGF0dHIoKiwgXFxwcm9ibGVtc1xcKT08ZXh0ZXJuYWxwdHI+IFxuIn0= --&gt;
-</code></pre>
-<p>spc_tbl_ [10,000 × 20] (S3: spec_tbl_df/tbl_df/tbl/data.frame) $
-transaction_id : num [1:10000] 1e+06 1e+06 1e+06 1e+06 1e+06 … $
-transaction_amount : num [1:10000] 17829 16402 9678 19013 13835 … $
-login_attempts : num [1:10000] 4 1 8 5 3 9 5 7 7 1 … $ device_risk_score
-: num [1:10000] 12 34.3 67.8 17.8 88.9 81.5 17.2 46.6 15.9 84.5 … $
-transfer_frequency : num [1:10000] 13 17 39 42 63 55 75 34 37 61 … $
-anomaly_score : num [1:10000] 0.37 0.26 0.15 0.55 0.24 0.24 0.56 0.42
-0.2 0.38 … $ account_age_days : num [1:10000] 2354 3181 1390 3716 4694 …
-$ transaction_time_hour : num [1:10000] 22 17 3 16 16 12 8 4 11 14 … $
-failed_transactions_last_30d : num [1:10000] 25 15 2 6 10 0 18 13 13 17
-… $ avg_monthly_balance : num [1:10000] 112760 118900 408169 80772
-382265 … $ daily_transaction_count : num [1:10000] 63 83 9 78 17 85 12
-63 104 17 … $ geo_distance_km : num [1:10000] 3189 839 3938 11111 3171 …
-$ session_duration_minutes : num [1:10000] 92 63 80 11 87 99 97 20 20 34
-… $ transaction_velocity_score : num [1:10000] 71.8 11.8 35.7 74.8 0 43
-50.6 97.7 73 47.2 … $ payment_channel : chr [1:10000]
-Terminal Banking  App … $ authentication_type : chr [1:10000]     … $
-card_present_flag : num [1:10000] 1 0 1 1 1 0 1 1 1 0 … $
-international_transaction_flag: num [1:10000] 1 0 0 1 0 0 0 1 1 1 … $
-suspicious_ip_flag : num [1:10000] 1 1 1 0 0 1 0 0 0 1 … $ fraud_flag :
-logi [1:10000] FALSE FALSE FALSE FALSE FALSE FALSE … - attr(<em>, )= ..
-cols( .. transaction_id = col_double(), .. transaction_amount =
-col_double(), .. login_attempts = col_double(), .. device_risk_score =
-col_double(), .. transfer_frequency = col_double(), .. anomaly_score =
-col_double(), .. account_age_days = col_double(), ..
-transaction_time_hour = col_double(), .. failed_transactions_last_30d =
-col_double(), .. avg_monthly_balance = col_double(), ..
-daily_transaction_count = col_double(), .. geo_distance_km =
-col_double(), .. session_duration_minutes = col_double(), ..
-transaction_velocity_score = col_double(), .. payment_channel =
-col_character(), .. authentication_type = col_character(), ..
-card_present_flag = col_double(), .. international_transaction_flag =
-col_double(), .. suspicious_ip_flag = col_double(), .. fraud_flag =
-col_logical() .. ) - attr(</em>, )=<externalptr></p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-## 1.2. Cleaning data
-
-### 1.2.1. Missing value
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc2FwcGx5KGZyYXVkX2RmLCBmdW5jdGlvbih4KSBzdW0oaXMubmEoeCkpKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-sapply(fraud_df, function(x) sum(is.na(x)))</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgICAgIHRyYW5zYWN0aW9uX2lkICAgICAgICAgICAgIHRyYW5zYWN0aW9uX2Ftb3VudCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgXG4gICAgICAgICAgICAgICAgbG9naW5fYXR0ZW1wdHMgICAgICAgICAgICAgIGRldmljZV9yaXNrX3Njb3JlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCBcbiAgICAgICAgICAgIHRyYW5zZmVyX2ZyZXF1ZW5jeSAgICAgICAgICAgICAgICAgIGFub21hbHlfc2NvcmUgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwIFxuICAgICAgICAgICAgICBhY2NvdW50X2FnZV9kYXlzICAgICAgICAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgXG4gIGZhaWxlZF90cmFuc2FjdGlvbnNfbGFzdF8zMGQgICAgICAgICAgICBhdmdfbW9udGhseV9iYWxhbmNlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCBcbiAgICAgICBkYWlseV90cmFuc2FjdGlvbl9jb3VudCAgICAgICAgICAgICAgICBnZW9fZGlzdGFuY2Vfa20gXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwIFxuICAgICAgc2Vzc2lvbl9kdXJhdGlvbl9taW51dGVzICAgICB0cmFuc2FjdGlvbl92ZWxvY2l0eV9zY29yZSBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgXG4gICAgICAgICAgICAgICBwYXltZW50X2NoYW5uZWwgICAgICAgICAgICBhdXRoZW50aWNhdGlvbl90eXBlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCBcbiAgICAgICAgICAgICBjYXJkX3ByZXNlbnRfZmxhZyBpbnRlcm5hdGlvbmFsX3RyYW5zYWN0aW9uX2ZsYWcgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwIFxuICAgICAgICAgICAgc3VzcGljaW91c19pcF9mbGFnICAgICAgICAgICAgICAgICAgICAgZnJhdWRfZmxhZyBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgXG4ifQ== --&gt;
-</code></pre>
-<pre><code>            transaction_id             transaction_amount 
-                         0                              0 
-            login_attempts              device_risk_score 
-                         0                              0 
-        transfer_frequency                  anomaly_score 
-                         0                              0 
-          account_age_days          transaction_time_hour 
-                         0                              0 </code></pre>
-<p>failed_transactions_last_30d avg_monthly_balance 0 0
-daily_transaction_count geo_distance_km 0 0 session_duration_minutes
-transaction_velocity_score 0 0 payment_channel authentication_type 0 0
-card_present_flag international_transaction_flag 0 0 suspicious_ip_flag
-fraud_flag 0 0</p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-### 1.2.2. Duplicate data
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc3VtKGR1cGxpY2F0ZWQoZnJhdWRfZGYpKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-sum(duplicated(fraud_df))</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-output-begin eyJkYXRhIjoiWzFdIDBcbiJ9 --&gt;
-</code></pre>
-<p>[1] 0</p>
-<pre><code>
-
-
-&lt;!-- rnb-output-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-### 1.2.3. Biến đổi dữ liệu sử dụng để phân tích
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuRURBX2RmIDwtIGZyYXVkX2RmICU+JVxuICBtdXRhdGUoXG4gICAgXG4gICAgIyBSaXNrIHRpZXJcbiAgICByaXNrX3RpZXIgPSBjdXQoXG4gICAgICBhbm9tYWx5X3Njb3JlLFxuICAgICAgYnJlYWtzID0gYygwLCAwLjMsIDAuNiwgMC44LCAxKSxcbiAgICAgIGxhYmVscyA9IGMoXFxMb3dcXCwgXFxNZWRpdW1cXCwgXFxIaWdoXFwsIFxcQ3JpdGljYWxcXCksXG4gICAgICBpbmNsdWRlLmxvd2VzdCA9IFRSVUVcbiAgICApLFxuICAgIFxuICAgICMgVGltZSBvZiBkYXlcbiAgICB0aW1lX29mX2RheSA9IGNhc2Vfd2hlbihcbiAgICAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA+PSAwICAmIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA8IDYgIH4gXFxOaWdodFxcLFxuICAgICAgdHJhbnNhY3Rpb25fdGltZV9ob3VyID49IDYgICYgdHJhbnNhY3Rpb25fdGltZV9ob3VyIDwgMTIgfiBcXE1vcm5pbmdcXCxcbiAgICAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA+PSAxMiAmIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA8IDE4IH4gXFxBZnRlcm5vb25cXCxcbiAgICAgIFRSVUUgfiBcXEV2ZW5pbmdcXFxuICAgICksXG4gICAgXG4gICAgIyBDb21wb3NpdGUgaGlnaC1yaXNrIGZsYWdcbiAgICBoaWdoX3Jpc2tfY29tYm8gPSBpZl9lbHNlKFxuICAgICAgc3VzcGljaW91c19pcF9mbGFnID09IDEgJlxuICAgICAgaW50ZXJuYXRpb25hbF90cmFuc2FjdGlvbl9mbGFnID09IDEgJlxuICAgICAgYW5vbWFseV9zY29yZSA+IDAuNyxcbiAgICAgIDFMLFxuICAgICAgMExcbiAgICApLFxuICAgIFxuICAgICMgQWNjb3VudCBtYXR1cml0eVxuICAgIGFjY291bnRfbWF0dXJpdHkgPSBjdXQoXG4gICAgICBhY2NvdW50X2FnZV9kYXlzLFxuICAgICAgYnJlYWtzID0gYygwLCAzNjUsIDczMCwgMTgyNSwgMzY1MCwgSW5mKSxcbiAgICAgIGxhYmVscyA9IGMoXFw8MSB5clxcLCBcXDEtMiB5clxcLCBcXDItNSB5clxcLCBcXDUtMTAgeXJcXCwgXFw+MTAgeXJcXCksXG4gICAgICBpbmNsdWRlLmxvd2VzdCA9IFRSVUVcbiAgICApLFxuICAgIFxuICAgICMgQW1vdW50IHRpZXJcbiAgICBhbW91bnRfdGllciA9IGN1dChcbiAgICAgIHRyYW5zYWN0aW9uX2Ftb3VudCxcbiAgICAgIGJyZWFrcyA9IGMoMCwgNTAwMCwgMTAwMDAsIDE1MDAwLCAyMDAwMCwgSW5mKSxcbiAgICAgIGxhYmVscyA9IGMoXFw8NUtcXCwgXFw1LTEwS1xcLCBcXDEwLTE1S1xcLCBcXDE1LTIwS1xcLCBcXD4yMEtcXCksXG4gICAgICBpbmNsdWRlLmxvd2VzdCA9IFRSVUVcbiAgICApXG4gICAgXG4gIClcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-EDA_df &lt;- fraud_df %&gt;%
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhnZ3Bsb3Qy4oCZIHdhcyBidWlsdCB1bmRlciBSIHZlcnNpb24gNC40LjNXYXJuaW5nOiBwYWNrYWdlIOKAmGx1YnJpZGF0ZeKAmSB3YXMgYnVpbHQgdW5kZXIgUiB2ZXJzaW9uIDQuNC4y4pSA4pSAIEF0dGFjaGluZyBjb3JlIHRpZHl2ZXJzZSBwYWNrYWdlcyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlIDIuMC4wIOKUgOKUgFxu4pyUIGRwbHlyICAgICAxLjEuNCAgICAg4pyUIHJlYWRyICAgICAyLjEuNVxu4pyUIGZvcmNhdHMgICAxLjAuMCAgICAg4pyUIHN0cmluZ3IgICAxLjUuMVxu4pyUIGdncGxvdDIgICA0LjAuMyAgICAg4pyUIHRpYmJsZSAgICAzLjIuMVxu4pyUIGx1YnJpZGF0ZSAxLjkuNCAgICAg4pyUIHRpZHlyICAgICAxLjMuMVxu4pyUIHB1cnJyICAgICAxLjAuMiAgICAg4pSA4pSAIENvbmZsaWN0cyDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAgdGlkeXZlcnNlX2NvbmZsaWN0cygpIOKUgOKUgFxu4pyWIGRwbHlyOjpmaWx0ZXIoKSBtYXNrcyBzdGF0czo6ZmlsdGVyKClcbuKcliBkcGx5cjo6bGFnKCkgICAgbWFza3Mgc3RhdHM6OmxhZygpXG7ihLkgVXNlIHRoZSBcdTAwMWJdODs7aHR0cDovL2NvbmZsaWN0ZWQuci1saWIub3JnL1x1MDAwN2NvbmZsaWN0ZWQgcGFja2FnZVx1MDAxYl04OztcdTAwMDcgdG8gZm9yY2UgYWxsIGNvbmZsaWN0cyB0byBiZWNvbWUgZXJyb3JzXG4ifQ== -->
+<pre><code>Warning: package ‘ggplot2’ was built under R version 4.4.3Warning: package ‘lubridate’ was built under R version 4.4.2── Attaching core tidyverse packages ───────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   4.0.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     ── Conflicts ─────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnJhdWRfZGYgPC0gcmVhZF9jc3YoXCJDOi9Vc2Vycy9hZG1pbi9PbmVEcml2ZSAtIFRIUFQgTMOqIEjhu5NuZyBQaG9uZy9HaXQvRnJhdWRfZGV0ZWN0aW9uL2JhbmtpbmdfdHJhbnNhY3Rpb25zLmNzdlwiKVxuYGBgIn0= -->
+<pre class="r"><code>fraud_df &lt;- read_csv(&quot;C:/Users/admin/OneDrive - THPT Lê Hồng Phong/Git/Fraud_detection/banking_transactions.csv&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogMTAwMDAgQ29sdW1uczogMjDilIDilIAgQ29sdW1uIHNwZWNpZmljYXRpb24g4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG5EZWxpbWl0ZXI6IFwiLFwiXG5jaHIgICgyKTogcGF5bWVudF9jaGFubmVsLCBhdXRoZW50aWNhdGlvbl90eXBlXG5kYmwgKDE3KTogdHJhbnNhY3Rpb25faWQsIHRyYW5zYWN0aW9uX2Ftb3VudCwgbG9naW5fYXR0ZW1wdHMsIGRldmljZV9yaXNrX3Njb3JlLCAuLi5cbmxnbCAgKDEpOiBmcmF1ZF9mbGFnXG7ihLkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG7ihLkgU3BlY2lmeSB0aGUgY29sdW1uIHR5cGVzIG9yIHNldCBgc2hvd19jb2xfdHlwZXMgPSBGQUxTRWAgdG8gcXVpZXQgdGhpcyBtZXNzYWdlLlxuIn0= -->
+<pre><code>Rows: 10000 Columns: 20── Column specification ─────────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr  (2): payment_channel, authentication_type
+dbl (17): transaction_id, transaction_amount, login_attempts, device_risk_score, ...
+lgl  (1): fraud_flag
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChmcmF1ZF9kZilcbmBgYCJ9 -->
+<pre class="r"><code>head(fraud_df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MjAsInN1bW1hcnkiOnsiQSB0aWJibGUiOlsiNiDDlyAyMCJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJvMVVUV3diUlJUZXhIYmFHTktralZFQ1FzRkM5RWVWWWpXS2hGSWg1SFdoclJDcWtyUnVtOXN3MlIzYm8rek9MTHV6S1lhTFFlVkhGUmNPSE15UmN1aUZIT2pGeDRyeWN5aWd0cGNLYmowZ0JQU0FxTGlBYURxejg4YmFYUUppSlB1YitlWjk3ODE3ODNaT3Y3aTJXRjRyVzVaVnNJckZFYXRRa2xPcmRMWjVZbjdKc29xamNqRmlGYTF4aGE5Sm8yazVxY2pmSHZrYmE5UXV2cVhNSlY0RWZBZndQY0JMZ085YmVpUTYreGExTDk4cFAyL2ZMTVp6ZzlWNzl1Yy83VS93OWdkcnE3KysvWlI5bzlUdDkvc2YyYmRtWGxJNDFFMXBKL1hmTk5wVndBcmdic0NuTFRPMDdoRHdqUU10TmV5Vis0dHEyQXZmcVBHdGZlNW9QNG5YZkNXck93eTZCY0FYZWhxUHczb1oxaS8zTXJyNm5hM0s2M2RQYnRWdnFpeURUK3JYazNDTDlidjlKRTc5dTRGTWMyNWdjQmp2WTFmN3UvS0R4ZzhIR2ovVmlkbWZuZE80VmN5ZTg5bmNPVTBkanVUd1VLNHVSNEd2QWNLbVBRdjRqSlVmV3ZmWHUyOG05L1gzcmlWMVg0M1pueStyUE96N2crZFV2bzJaNW84bnR5cHZOSGIvL29leUcrcE12WnJYTk1JOTJXZDYyZk9mdGJQeHJ2eWkrVXRMa1A4WEdyKzgydFAxK2txdnIzK2QxWjBIZjhPNHNENWc0c0E1MXE1bGRhdlFId2YxZmRtTjd6V2V2cHJ3eHRnKzNqUFRLYVdERCtYUmxlVXoxU1lKZmNxd0I5d2o1OGw2OVJobUc1UzFnU28wbXFkZ1dqN0YxNmxIcW8wZytGOU1ObDVodWJrQzAvRmpsUHRFaE5UNTU5N08wOGViRi9qOENld0lIbFlic2VnUUpxaURCZVhNVk1OOGJXYVlkUjVUWTBkZFhyL0R5T2ordzMrZVYrL1gyTDk2elQ1akpZWjlFbG02aEJVZzk0Z1FzMGhXUWVhTnFBdnN2alNMZlI0ellldzkzcWFTRTRMNGdZaUEzZXVTVGVvUUZOSm9BMFVPRDBuR1VZdUVxQldTVjJQQ25DN3NUR0RHZmV4MU0rWlQySEZVTUlUYkJMbTRhL3cvbGo2UG9ENUJIUjZIc1Bsa0M4djJjRkhLSmtJZWpnUmFQR0lTbXNhYmJlUnpKam95NGpyMk1ITk16QmxYeXJ0cE5YSlNDVSsyQ1VjdWpZU1NvQTBmNk5tSVJKR3lkZU13YVJva216NFd4Sno0aWJTL1RlSnhoNHBzcnBNQjd2cXk2WkRUd1l3UmIzalNUQzhpMFEyTVlxK0RReGNGSVltVXJPVmg4MEhOVVNaSXlCSUI5aktwcEt6MlJYRVVVSWZ5T0VJMFNPK1VXeUdPWGMxa2UyWTg1QmRxcG04bTVHKzBKLysydDdmL3pEZVhJeXR1bXN1UVpSY0xYSlBPZlNKWEQzS1NYVHhJN2tvNm5ZWTJUb3RId2h3eEdUTjFFbmZlNmNSc1kzNGh0MTBJNUFPanY0Z1JhUDhKbUkrbDVoVjlpdEZ0Sy91V2pCRW1HOXVVdXVUaDllR1ZGR1IzbS9hWDlVaktVUXRDT3V5UnNtU2ptdUJpK09xVkhlNFpKc25jZXZBUU5qZWpvM0VJQUFBPSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["transaction_id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["transaction_amount"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["login_attempts"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["device_risk_score"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["transfer_frequency"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["anomaly_score"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["account_age_days"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["transaction_time_hour"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["failed_transactions_last_30d"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["avg_monthly_balance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["daily_transaction_count"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["geo_distance_km"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["session_duration_minutes"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["transaction_velocity_score"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["payment_channel"],"name":[15],"type":["chr"],"align":["left"]},{"label":["authentication_type"],"name":[16],"type":["chr"],"align":["left"]},{"label":["card_present_flag"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["international_transaction_flag"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["suspicious_ip_flag"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["fraud_flag"],"name":[20],"type":["lgl"],"align":["right"]}],"data":[{"1":"1000001","2":"17829.01","3":"4","4":"12.0","5":"13","6":"0.37","7":"2354","8":"22","9":"25","10":"112760.07","11":"63","12":"3189","13":"92","14":"71.8","15":"POS Terminal","16":"OTP","17":"1","18":"1","19":"1","20":"FALSE"},{"1":"1000002","2":"16401.83","3":"1","4":"34.3","5":"17","6":"0.26","7":"3181","8":"17","9":"15","10":"118899.52","11":"83","12":"839","13":"63","14":"11.8","15":"Web Banking","16":"Biometric","17":"0","18":"0","19":"1","20":"FALSE"},{"1":"1000003","2":"9678.29","3":"8","4":"67.8","5":"39","6":"0.15","7":"1390","8":"3","9":"2","10":"408168.98","11":"9","12":"3938","13":"80","14":"35.7","15":"ATM","16":"OTP","17":"1","18":"0","19":"1","20":"FALSE"},{"1":"1000004","2":"19013.38","3":"5","4":"17.8","5":"42","6":"0.55","7":"3716","8":"16","9":"6","10":"80771.69","11":"78","12":"11111","13":"11","14":"74.8","15":"Mobile App","16":"OTP","17":"1","18":"1","19":"0","20":"FALSE"},{"1":"1000005","2":"13834.95","3":"3","4":"88.9","5":"63","6":"0.24","7":"4694","8":"16","9":"10","10":"382265.32","11":"17","12":"3171","13":"87","14":"0.0","15":"Mobile App","16":"OTP","17":"1","18":"0","19":"0","20":"FALSE"},{"1":"1000006","2":"17501.15","3":"9","4":"81.5","5":"55","6":"0.24","7":"3842","8":"12","9":"0","10":"204382.64","11":"85","12":"10126","13":"99","14":"43.0","15":"Mobile App","16":"Two-Factor Authentication","17":"0","18":"0","19":"1","20":"FALSE"}],"options":{"columns":{"min":{},"max":[10],"total":[20]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Overview về bộ dữ liệu</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKGZyYXVkX2RmKVxuYGBgIn0= -->
+<pre class="r"><code>str(fraud_df)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoic3BjX3RibF8gWzEwLDAwMCDDlyAyMF0gKFMzOiBzcGVjX3RibF9kZi90YmxfZGYvdGJsL2RhdGEuZnJhbWUpXG4gJCB0cmFuc2FjdGlvbl9pZCAgICAgICAgICAgICAgICA6IG51bSBbMToxMDAwMF0gMWUrMDYgMWUrMDYgMWUrMDYgMWUrMDYgMWUrMDYgLi4uXG4gJCB0cmFuc2FjdGlvbl9hbW91bnQgICAgICAgICAgICA6IG51bSBbMToxMDAwMF0gMTc4MjkgMTY0MDIgOTY3OCAxOTAxMyAxMzgzNSAuLi5cbiAkIGxvZ2luX2F0dGVtcHRzICAgICAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSA0IDEgOCA1IDMgOSA1IDcgNyAxIC4uLlxuICQgZGV2aWNlX3Jpc2tfc2NvcmUgICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDEyIDM0LjMgNjcuOCAxNy44IDg4LjkgODEuNSAxNy4yIDQ2LjYgMTUuOSA4NC41IC4uLlxuICQgdHJhbnNmZXJfZnJlcXVlbmN5ICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDEzIDE3IDM5IDQyIDYzIDU1IDc1IDM0IDM3IDYxIC4uLlxuICQgYW5vbWFseV9zY29yZSAgICAgICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDAuMzcgMC4yNiAwLjE1IDAuNTUgMC4yNCAwLjI0IDAuNTYgMC40MiAwLjIgMC4zOCAuLi5cbiAkIGFjY291bnRfYWdlX2RheXMgICAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSAyMzU0IDMxODEgMTM5MCAzNzE2IDQ2OTQgLi4uXG4gJCB0cmFuc2FjdGlvbl90aW1lX2hvdXIgICAgICAgICA6IG51bSBbMToxMDAwMF0gMjIgMTcgMyAxNiAxNiAxMiA4IDQgMTEgMTQgLi4uXG4gJCBmYWlsZWRfdHJhbnNhY3Rpb25zX2xhc3RfMzBkICA6IG51bSBbMToxMDAwMF0gMjUgMTUgMiA2IDEwIDAgMTggMTMgMTMgMTcgLi4uXG4gJCBhdmdfbW9udGhseV9iYWxhbmNlICAgICAgICAgICA6IG51bSBbMToxMDAwMF0gMTEyNzYwIDExODkwMCA0MDgxNjkgODA3NzIgMzgyMjY1IC4uLlxuICQgZGFpbHlfdHJhbnNhY3Rpb25fY291bnQgICAgICAgOiBudW0gWzE6MTAwMDBdIDYzIDgzIDkgNzggMTcgODUgMTIgNjMgMTA0IDE3IC4uLlxuICQgZ2VvX2Rpc3RhbmNlX2ttICAgICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDMxODkgODM5IDM5MzggMTExMTEgMzE3MSAuLi5cbiAkIHNlc3Npb25fZHVyYXRpb25fbWludXRlcyAgICAgIDogbnVtIFsxOjEwMDAwXSA5MiA2MyA4MCAxMSA4NyA5OSA5NyAyMCAyMCAzNCAuLi5cbiAkIHRyYW5zYWN0aW9uX3ZlbG9jaXR5X3Njb3JlICAgIDogbnVtIFsxOjEwMDAwXSA3MS44IDExLjggMzUuNyA3NC44IDAgNDMgNTAuNiA5Ny43IDczIDQ3LjIgLi4uXG4gJCBwYXltZW50X2NoYW5uZWwgICAgICAgICAgICAgICA6IGNociBbMToxMDAwMF0gXCJQT1MgVGVybWluYWxcIiBcIldlYiBCYW5raW5nXCIgXCJBVE1cIiBcIk1vYmlsZSBBcHBcIiAuLi5cbiAkIGF1dGhlbnRpY2F0aW9uX3R5cGUgICAgICAgICAgIDogY2hyIFsxOjEwMDAwXSBcIk9UUFwiIFwiQmlvbWV0cmljXCIgXCJPVFBcIiBcIk9UUFwiIC4uLlxuICQgY2FyZF9wcmVzZW50X2ZsYWcgICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDEgMCAxIDEgMSAwIDEgMSAxIDAgLi4uXG4gJCBpbnRlcm5hdGlvbmFsX3RyYW5zYWN0aW9uX2ZsYWc6IG51bSBbMToxMDAwMF0gMSAwIDAgMSAwIDAgMCAxIDEgMSAuLi5cbiAkIHN1c3BpY2lvdXNfaXBfZmxhZyAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSAxIDEgMSAwIDAgMSAwIDAgMCAxIC4uLlxuICQgZnJhdWRfZmxhZyAgICAgICAgICAgICAgICAgICAgOiBsb2dpIFsxOjEwMDAwXSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSAuLi5cbiAtIGF0dHIoKiwgXCJzcGVjXCIpPVxuICAuLiBjb2xzKFxuICAuLiAgIHRyYW5zYWN0aW9uX2lkID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIHRyYW5zYWN0aW9uX2Ftb3VudCA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBsb2dpbl9hdHRlbXB0cyA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBkZXZpY2Vfcmlza19zY29yZSA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICB0cmFuc2Zlcl9mcmVxdWVuY3kgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgYW5vbWFseV9zY29yZSA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBhY2NvdW50X2FnZV9kYXlzID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBmYWlsZWRfdHJhbnNhY3Rpb25zX2xhc3RfMzBkID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIGF2Z19tb250aGx5X2JhbGFuY2UgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgZGFpbHlfdHJhbnNhY3Rpb25fY291bnQgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgZ2VvX2Rpc3RhbmNlX2ttID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIHNlc3Npb25fZHVyYXRpb25fbWludXRlcyA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICB0cmFuc2FjdGlvbl92ZWxvY2l0eV9zY29yZSA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBwYXltZW50X2NoYW5uZWwgPSBjb2xfY2hhcmFjdGVyKCksXG4gIC4uICAgYXV0aGVudGljYXRpb25fdHlwZSA9IGNvbF9jaGFyYWN0ZXIoKSxcbiAgLi4gICBjYXJkX3ByZXNlbnRfZmxhZyA9IGNvbF9kb3VibGUoKSxcbiAgLi4gICBpbnRlcm5hdGlvbmFsX3RyYW5zYWN0aW9uX2ZsYWcgPSBjb2xfZG91YmxlKCksXG4gIC4uICAgc3VzcGljaW91c19pcF9mbGFnID0gY29sX2RvdWJsZSgpLFxuICAuLiAgIGZyYXVkX2ZsYWcgPSBjb2xfbG9naWNhbCgpXG4gIC4uIClcbiAtIGF0dHIoKiwgXCJwcm9ibGVtc1wiKT08ZXh0ZXJuYWxwdHI+IFxuIn0= -->
+<pre><code>spc_tbl_ [10,000 × 20] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ transaction_id                : num [1:10000] 1e+06 1e+06 1e+06 1e+06 1e+06 ...
+ $ transaction_amount            : num [1:10000] 17829 16402 9678 19013 13835 ...
+ $ login_attempts                : num [1:10000] 4 1 8 5 3 9 5 7 7 1 ...
+ $ device_risk_score             : num [1:10000] 12 34.3 67.8 17.8 88.9 81.5 17.2 46.6 15.9 84.5 ...
+ $ transfer_frequency            : num [1:10000] 13 17 39 42 63 55 75 34 37 61 ...
+ $ anomaly_score                 : num [1:10000] 0.37 0.26 0.15 0.55 0.24 0.24 0.56 0.42 0.2 0.38 ...
+ $ account_age_days              : num [1:10000] 2354 3181 1390 3716 4694 ...
+ $ transaction_time_hour         : num [1:10000] 22 17 3 16 16 12 8 4 11 14 ...
+ $ failed_transactions_last_30d  : num [1:10000] 25 15 2 6 10 0 18 13 13 17 ...
+ $ avg_monthly_balance           : num [1:10000] 112760 118900 408169 80772 382265 ...
+ $ daily_transaction_count       : num [1:10000] 63 83 9 78 17 85 12 63 104 17 ...
+ $ geo_distance_km               : num [1:10000] 3189 839 3938 11111 3171 ...
+ $ session_duration_minutes      : num [1:10000] 92 63 80 11 87 99 97 20 20 34 ...
+ $ transaction_velocity_score    : num [1:10000] 71.8 11.8 35.7 74.8 0 43 50.6 97.7 73 47.2 ...
+ $ payment_channel               : chr [1:10000] &quot;POS Terminal&quot; &quot;Web Banking&quot; &quot;ATM&quot; &quot;Mobile App&quot; ...
+ $ authentication_type           : chr [1:10000] &quot;OTP&quot; &quot;Biometric&quot; &quot;OTP&quot; &quot;OTP&quot; ...
+ $ card_present_flag             : num [1:10000] 1 0 1 1 1 0 1 1 1 0 ...
+ $ international_transaction_flag: num [1:10000] 1 0 0 1 0 0 0 1 1 1 ...
+ $ suspicious_ip_flag            : num [1:10000] 1 1 1 0 0 1 0 0 0 1 ...
+ $ fraud_flag                    : logi [1:10000] FALSE FALSE FALSE FALSE FALSE FALSE ...
+ - attr(*, &quot;spec&quot;)=
+  .. cols(
+  ..   transaction_id = col_double(),
+  ..   transaction_amount = col_double(),
+  ..   login_attempts = col_double(),
+  ..   device_risk_score = col_double(),
+  ..   transfer_frequency = col_double(),
+  ..   anomaly_score = col_double(),
+  ..   account_age_days = col_double(),
+  ..   transaction_time_hour = col_double(),
+  ..   failed_transactions_last_30d = col_double(),
+  ..   avg_monthly_balance = col_double(),
+  ..   daily_transaction_count = col_double(),
+  ..   geo_distance_km = col_double(),
+  ..   session_duration_minutes = col_double(),
+  ..   transaction_velocity_score = col_double(),
+  ..   payment_channel = col_character(),
+  ..   authentication_type = col_character(),
+  ..   card_present_flag = col_double(),
+  ..   international_transaction_flag = col_double(),
+  ..   suspicious_ip_flag = col_double(),
+  ..   fraud_flag = col_logical()
+  .. )
+ - attr(*, &quot;problems&quot;)=&lt;externalptr&gt; </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="cleaning-data" class="section level2">
+<h2>1.2. Cleaning data</h2>
+<div id="missing-value" class="section level3">
+<h3>1.2.1. Missing value</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2FwcGx5KGZyYXVkX2RmLCBmdW5jdGlvbih4KSBzdW0oaXMubmEoeCkpKVxuYGBgIn0= -->
+<pre class="r"><code>sapply(fraud_df, function(x) sum(is.na(x)))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgICAgIHRyYW5zYWN0aW9uX2lkICAgICAgICAgICAgIHRyYW5zYWN0aW9uX2Ftb3VudCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgXG4gICAgICAgICAgICAgICAgbG9naW5fYXR0ZW1wdHMgICAgICAgICAgICAgIGRldmljZV9yaXNrX3Njb3JlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCBcbiAgICAgICAgICAgIHRyYW5zZmVyX2ZyZXF1ZW5jeSAgICAgICAgICAgICAgICAgIGFub21hbHlfc2NvcmUgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwIFxuICAgICAgICAgICAgICBhY2NvdW50X2FnZV9kYXlzICAgICAgICAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgXG4gIGZhaWxlZF90cmFuc2FjdGlvbnNfbGFzdF8zMGQgICAgICAgICAgICBhdmdfbW9udGhseV9iYWxhbmNlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCBcbiAgICAgICBkYWlseV90cmFuc2FjdGlvbl9jb3VudCAgICAgICAgICAgICAgICBnZW9fZGlzdGFuY2Vfa20gXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwIFxuICAgICAgc2Vzc2lvbl9kdXJhdGlvbl9taW51dGVzICAgICB0cmFuc2FjdGlvbl92ZWxvY2l0eV9zY29yZSBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgXG4gICAgICAgICAgICAgICBwYXltZW50X2NoYW5uZWwgICAgICAgICAgICBhdXRoZW50aWNhdGlvbl90eXBlIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCBcbiAgICAgICAgICAgICBjYXJkX3ByZXNlbnRfZmxhZyBpbnRlcm5hdGlvbmFsX3RyYW5zYWN0aW9uX2ZsYWcgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwIFxuICAgICAgICAgICAgc3VzcGljaW91c19pcF9mbGFnICAgICAgICAgICAgICAgICAgICAgZnJhdWRfZmxhZyBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAgXG4ifQ== -->
+<pre><code>                transaction_id             transaction_amount 
+                             0                              0 
+                login_attempts              device_risk_score 
+                             0                              0 
+            transfer_frequency                  anomaly_score 
+                             0                              0 
+              account_age_days          transaction_time_hour 
+                             0                              0 
+  failed_transactions_last_30d            avg_monthly_balance 
+                             0                              0 
+       daily_transaction_count                geo_distance_km 
+                             0                              0 
+      session_duration_minutes     transaction_velocity_score 
+                             0                              0 
+               payment_channel            authentication_type 
+                             0                              0 
+             card_present_flag international_transaction_flag 
+                             0                              0 
+            suspicious_ip_flag                     fraud_flag 
+                             0                              0 </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="duplicate-data" class="section level3">
+<h3>1.2.2. Duplicate data</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtKGR1cGxpY2F0ZWQoZnJhdWRfZGYpKVxuYGBgIn0= -->
+<pre class="r"><code>sum(duplicated(fraud_df))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDBcbiJ9 -->
+<pre><code>[1] 0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="biến-đổi-dữ-liệu-sử-dụng-để-phân-tích" class="section level3">
+<h3>1.2.3. Biến đổi dữ liệu sử dụng để phân tích</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRURBX2RmIDwtIGZyYXVkX2RmICU+JVxuICBtdXRhdGUoXG4gICAgXG4gICAgIyBSaXNrIHRpZXJcbiAgICByaXNrX3RpZXIgPSBjdXQoXG4gICAgICBhbm9tYWx5X3Njb3JlLFxuICAgICAgYnJlYWtzID0gYygwLCAwLjMsIDAuNiwgMC44LCAxKSxcbiAgICAgIGxhYmVscyA9IGMoXCJMb3dcIiwgXCJNZWRpdW1cIiwgXCJIaWdoXCIsIFwiQ3JpdGljYWxcIiksXG4gICAgICBpbmNsdWRlLmxvd2VzdCA9IFRSVUVcbiAgICApLFxuICAgIFxuICAgICMgVGltZSBvZiBkYXlcbiAgICB0aW1lX29mX2RheSA9IGNhc2Vfd2hlbihcbiAgICAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA+PSAwICAmIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA8IDYgIH4gXCJOaWdodFwiLFxuICAgICAgdHJhbnNhY3Rpb25fdGltZV9ob3VyID49IDYgICYgdHJhbnNhY3Rpb25fdGltZV9ob3VyIDwgMTIgfiBcIk1vcm5pbmdcIixcbiAgICAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA+PSAxMiAmIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA8IDE4IH4gXCJBZnRlcm5vb25cIixcbiAgICAgIFRSVUUgfiBcIkV2ZW5pbmdcIlxuICAgICksXG4gICAgXG4gICAgIyBDb21wb3NpdGUgaGlnaC1yaXNrIGZsYWdcbiAgICBoaWdoX3Jpc2tfY29tYm8gPSBpZl9lbHNlKFxuICAgICAgc3VzcGljaW91c19pcF9mbGFnID09IDEgJlxuICAgICAgaW50ZXJuYXRpb25hbF90cmFuc2FjdGlvbl9mbGFnID09IDEgJlxuICAgICAgYW5vbWFseV9zY29yZSA+IDAuNyxcbiAgICAgIDFMLFxuICAgICAgMExcbiAgICApLFxuICAgIFxuICAgICMgQWNjb3VudCBtYXR1cml0eVxuICAgIGFjY291bnRfbWF0dXJpdHkgPSBjdXQoXG4gICAgICBhY2NvdW50X2FnZV9kYXlzLFxuICAgICAgYnJlYWtzID0gYygwLCAzNjUsIDczMCwgMTgyNSwgMzY1MCwgSW5mKSxcbiAgICAgIGxhYmVscyA9IGMoXCI8MSB5clwiLCBcIjEtMiB5clwiLCBcIjItNSB5clwiLCBcIjUtMTAgeXJcIiwgXCI+MTAgeXJcIiksXG4gICAgICBpbmNsdWRlLmxvd2VzdCA9IFRSVUVcbiAgICApLFxuICAgIFxuICAgICMgQW1vdW50IHRpZXJcbiAgICBhbW91bnRfdGllciA9IGN1dChcbiAgICAgIHRyYW5zYWN0aW9uX2Ftb3VudCxcbiAgICAgIGJyZWFrcyA9IGMoMCwgNTAwMCwgMTAwMDAsIDE1MDAwLCAyMDAwMCwgSW5mKSxcbiAgICAgIGxhYmVscyA9IGMoXCI8NUtcIiwgXCI1LTEwS1wiLCBcIjEwLTE1S1wiLCBcIjE1LTIwS1wiLCBcIj4yMEtcIiksXG4gICAgICBpbmNsdWRlLmxvd2VzdCA9IFRSVUVcbiAgICApXG4gICAgXG4gIClcbmBgYCJ9 -->
+<pre class="r"><code>EDA_df &lt;- fraud_df %&gt;%
   mutate(
     
     # Risk tier
     risk_tier = cut(
       anomaly_score,
       breaks = c(0, 0.3, 0.6, 0.8, 1),
-      labels = c(\Low\, \Medium\, \High\, \Critical\),
+      labels = c(&quot;Low&quot;, &quot;Medium&quot;, &quot;High&quot;, &quot;Critical&quot;),
       include.lowest = TRUE
     ),
     
     # Time of day
     time_of_day = case_when(
-      transaction_time_hour &gt;= 0  &amp; transaction_time_hour &lt; 6  ~ \Night\,
-      transaction_time_hour &gt;= 6  &amp; transaction_time_hour &lt; 12 ~ \Morning\,
-      transaction_time_hour &gt;= 12 &amp; transaction_time_hour &lt; 18 ~ \Afternoon\,
-      TRUE ~ \Evening\
+      transaction_time_hour &gt;= 0  &amp; transaction_time_hour &lt; 6  ~ &quot;Night&quot;,
+      transaction_time_hour &gt;= 6  &amp; transaction_time_hour &lt; 12 ~ &quot;Morning&quot;,
+      transaction_time_hour &gt;= 12 &amp; transaction_time_hour &lt; 18 ~ &quot;Afternoon&quot;,
+      TRUE ~ &quot;Evening&quot;
     ),
     
     # Composite high-risk flag
@@ -1964,7 +1943,7 @@ EDA_df &lt;- fraud_df %&gt;%
     account_maturity = cut(
       account_age_days,
       breaks = c(0, 365, 730, 1825, 3650, Inf),
-      labels = c(\&lt;1 yr\, \1-2 yr\, \2-5 yr\, \5-10 yr\, \&gt;10 yr\),
+      labels = c(&quot;&lt;1 yr&quot;, &quot;1-2 yr&quot;, &quot;2-5 yr&quot;, &quot;5-10 yr&quot;, &quot;&gt;10 yr&quot;),
       include.lowest = TRUE
     ),
     
@@ -1972,75 +1951,41 @@ EDA_df &lt;- fraud_df %&gt;%
     amount_tier = cut(
       transaction_amount,
       breaks = c(0, 5000, 10000, 15000, 20000, Inf),
-      labels = c(\&lt;5K\, \5-10K\, \10-15K\, \15-20K\, \&gt;20K\),
+      labels = c(&quot;&lt;5K&quot;, &quot;5-10K&quot;, &quot;10-15K&quot;, &quot;15-20K&quot;, &quot;&gt;20K&quot;),
       include.lowest = TRUE
     )
     
   )</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-# 2. EDA
-
-## 2.1. Data aggregation
-
-**Tính số lượng và % giao dịch fraud trên các kênh giao dịch (payment channel)**
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuRURBX2RmJT4lXG4gIGdyb3VwX2J5KHBheW1lbnRfY2hhbm5lbCkgJT4lXG4gIHN1bW1hcmlzZShcbiAgICBmcmF1ZF9yYXRlID0gcm91bmQobWVhbihmcmF1ZF9mbGFnKSoxMDAsMiksXG4gICAgY291bnQgPSBuKClcbiAgKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-EDA_df%&gt;%
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+</div>
+<div id="eda" class="section level1">
+<h1>2. EDA</h1>
+<div id="data-aggregation" class="section level2">
+<h2>2.1. Data aggregation</h2>
+<p><strong>Tính số lượng và % giao dịch fraud trên các kênh giao dịch
+(payment channel)</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRURBX2RmJT4lXG4gIGdyb3VwX2J5KHBheW1lbnRfY2hhbm5lbCkgJT4lXG4gIHN1bW1hcmlzZShcbiAgICBmcmF1ZF9yYXRlID0gcm91bmQobWVhbihmcmF1ZF9mbGFnKSoxMDAsMiksXG4gICAgY291bnQgPSBuKClcbiAgKVxuYGBgIn0= -->
+<pre class="r"><code>EDA_df%&gt;%
   group_by(payment_channel) %&gt;%
   summarise(
     fraud_rate = round(mean(fraud_flag)*100,2),
     count = n()
   )</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6NCwibmNvbCI6Mywic3VtbWFyeSI6eyJBIHRpYmJsZSI6IjQgw5cgMyJ9fSwicmRmIjoiSDRzSUFBQUFBQUFBQmwxUlMwN0RNQlI4amRPaUd0b2l1RUJYcUNBMUd6YXdRRW9SWWxlQm9JZ3VrQ28zTVczVXhMRlNoOCtPRzdEaEJyRG5Eb2c3c09FYTdGRERTK3BVeUphU3pCdDczaHRQTGs2RyszUklBWUNBYlZlQVZCRkM5V3B3MmowQXNDMHNLbUJEUGY4KzRLSHQ0aVRBSmo2MjNpQzlRVjlEMm8vSFFjamJQU2sxczNGK2R0a2U4Q1FLQkFzMXQzN054KzFqSm1hQm1HRFp6SHU1ZTFBc2QvZjFpeDdKTjNmbnUvUHo4WHpqZHBZMWJqV0ttVUN3eGRZbndoZnMvbTZZckFvVzhiazJTRFRaa3V3eDRrS052Q2tUZ3BjMjZHM0NVbitVTU1WTHRSZW5RaGt0NjBsODc1UnRjdy9XRTc2eUxQczFaM3NobTVlelM1TDZUREVISjBVY3E0VWhXWXVsQ21LQklpdFB0bWFJSzRsQnRGS1JPL0c3M2pRVnMrNmhzVTFrRVNndHFPVnFhR3ovdzJUcHdzcTB2S2JsTlM0bWdWaUZFYkx4S2l2aTh6c05tNWhIRVljamt3RFQwdmRFZHU2b1dLMytNdlhpc0dTS204UGlELzN0a1ZWdUFnQUEifQ== --&gt;
-
-&lt;div data-pagedtable=&quot;false&quot;&gt;
-  &lt;script data-pagedtable-source type=&quot;application/json&quot;&gt;
-{&quot;columns&quot;:[{&quot;label&quot;:[&quot;payment_channel&quot;],&quot;name&quot;:[1],&quot;type&quot;:[&quot;chr&quot;],&quot;align&quot;:[&quot;left&quot;]},{&quot;label&quot;:[&quot;fraud_rate&quot;],&quot;name&quot;:[2],&quot;type&quot;:[&quot;dbl&quot;],&quot;align&quot;:[&quot;right&quot;]},{&quot;label&quot;:[&quot;count&quot;],&quot;name&quot;:[3],&quot;type&quot;:[&quot;int&quot;],&quot;align&quot;:[&quot;right&quot;]}],&quot;data&quot;:[{&quot;1&quot;:&quot;ATM&quot;,&quot;2&quot;:&quot;13.00&quot;,&quot;3&quot;:&quot;777&quot;},{&quot;1&quot;:&quot;Mobile App&quot;,&quot;2&quot;:&quot;12.82&quot;,&quot;3&quot;:&quot;4804&quot;},{&quot;1&quot;:&quot;POS Terminal&quot;,&quot;2&quot;:&quot;11.43&quot;,&quot;3&quot;:&quot;1172&quot;},{&quot;1&quot;:&quot;Web Banking&quot;,&quot;2&quot;:&quot;12.32&quot;,&quot;3&quot;:&quot;3247&quot;}],&quot;options&quot;:{&quot;columns&quot;:{&quot;min&quot;:{},&quot;max&quot;:[10],&quot;total&quot;:[3]},&quot;rows&quot;:{&quot;min&quot;:[10],&quot;max&quot;:[10],&quot;total&quot;:[4]},&quot;pages&quot;:{}}}
-  &lt;/script&gt;
-&lt;/div&gt;
-
-&lt;!-- rnb-frame-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-**Tính số lượng và % giao dịch fraud trên các kiểu xác thực (authentication type)**
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRURBX2RmJT4lXG4gIGdyb3VwX2J5KGF1dGhlbnRpY2F0aW9uX3R5cGUpICU+JVxuICBzdW1tYXJpc2UoXG4gICAgZnJhdWRfcmF0ZSA9IHJvdW5kKG1lYW4oZnJhdWRfZmxhZykqMTAwLDIpLFxuICAgIGNvdW50ID0gbigpXG4gIClcbmBgYCJ9 --&gt;
-
-```r
-EDA_df%&gt;%
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>Tính số lượng và % giao dịch fraud trên các kiểu xác thực
+(authentication type)</strong></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuRURBX2RmJT4lXG4gIGdyb3VwX2J5KGF1dGhlbnRpY2F0aW9uX3R5cGUpICU+JVxuICBzdW1tYXJpc2UoXG4gICAgZnJhdWRfcmF0ZSA9IHJvdW5kKG1lYW4oZnJhdWRfZmxhZykqMTAwLDIpLFxuICAgIGNvdW50ID0gbigpXG4gIClcbmBgYCJ9 -->
+<pre class="r"><code>EDA_df%&gt;%
   group_by(authentication_type) %&gt;%
   summarise(
     fraud_rate = round(mean(fraud_flag)*100,2),
@@ -2227,12 +2172,11 @@ ggplot(
 <h1>3. Detection models</h1>
 <div id="unsupervised-learning" class="section level2">
 <h2>3.1. Unsupervised learning</h2>
-<p>Trước hết cần xử lý dữ liệu để chạy thuật toán</p>
+<p>Trước hết cần xử lý dữ liệu để chạy thuật toán Isolation forest</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeShmYXN0RHVtbWllcylcblxudW5zdXBfZGYgPC0gZnJhdWRfZGYgJT4lXG4gIHNlbGVjdCgtdHJhbnNhY3Rpb25faWQsIC1mcmF1ZF9mbGFnKVxuXG51bnN1cF9kZiA8LSBkdW1teV9jb2xzKFxuICB1bnN1cF9kZixcbiAgc2VsZWN0X2NvbHVtbnMgPSBjKFxuICAgIFxccGF5bWVudF9jaGFubmVsXFwsXG4gICAgXFxhdXRoZW50aWNhdGlvbl90eXBlXFxcbiAgKSxcbiAgcmVtb3ZlX2ZpcnN0X2R1bW15ID0gVFJVRSxcbiAgcmVtb3ZlX3NlbGVjdGVkX2NvbHVtbnMgPSBUUlVFXG4pXG5cbnVuc3VwX3NjYWxlZCA9IHNjYWxlKHVuc3VwX2RmKVxuYGBgXG5gYGAifQ== -->
-<pre class="r"><code>```r
-library(fastDummies)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShmYXN0RHVtbWllcylcblxudW5zdXBfZGYgPC0gZnJhdWRfZGYgJT4lXG4gIHNlbGVjdCgtdHJhbnNhY3Rpb25faWQsIC1mcmF1ZF9mbGFnKVxuXG51bnN1cF9kZiA8LSBkdW1teV9jb2xzKFxuICB1bnN1cF9kZixcbiAgc2VsZWN0X2NvbHVtbnMgPSBjKFxuICAgIFwicGF5bWVudF9jaGFubmVsXCIsXG4gICAgXCJhdXRoZW50aWNhdGlvbl90eXBlXCJcbiAgKSxcbiAgcmVtb3ZlX2ZpcnN0X2R1bW15ID0gVFJVRSxcbiAgcmVtb3ZlX3NlbGVjdGVkX2NvbHVtbnMgPSBUUlVFXG4pXG5cbnVuc3VwX3NjYWxlZCA9IHNjYWxlKHVuc3VwX2RmKVxuVmlldyh1bnN1cF9zY2FsZWQpXG5gYGAifQ== -->
+<pre class="r"><code>library(fastDummies)
 
 unsup_df &lt;- fraud_df %&gt;%
   select(-transaction_id, -fraud_flag)
@@ -2240,106 +2184,338 @@ unsup_df &lt;- fraud_df %&gt;%
 unsup_df &lt;- dummy_cols(
   unsup_df,
   select_columns = c(
-    \payment_channel\,
-    \authentication_type\
+    &quot;payment_channel&quot;,
+    &quot;authentication_type&quot;
   ),
   remove_first_dummy = TRUE,
   remove_selected_columns = TRUE
 )
 
-unsup_scaled = scale(unsup_df)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
+unsup_scaled = scale(unsup_df)
+View(unsup_scaled)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Thực hiện chạy thuật toán isolation forest</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI1RyYWluaW5nXG5saWJyYXJ5KHNvbGl0dWRlKVxuXG5pc28gPC0gaXNvbGF0aW9uRm9yZXN0JG5ldyhcbiAgc2FtcGxlX3NpemUgPSAyNTYsXG4gIG51bV90cmVlcyA9IDEwMCxcbiAgc2VlZCA9IDEyM1xuKVxuXG5pc28kZml0KGFzLmRhdGEuZnJhbWUodW5zdXBfc2NhbGVkKSlcblxuI1NpbmggYW5vbWFseV9zY29yZVxuaXNvX3Njb3JlcyA8LSBpc28kcHJlZGljdChcbiAgYXMuZGF0YS5mcmFtZSh1bnN1cF9zY2FsZWQpXG4pXG5cblxuZGZfaXNvIDwtIGZyYXVkX2RmICU+JVxuICBtdXRhdGUoXG4gICAgaWZvcmVzdF9zY29yZSA9IGlzb19zY29yZXMkYW5vbWFseV9zY29yZVxuICApXG5cbiNUb3AgYW5vbWFsaWVzXG5kZl9pc28gJT4lXG4gIGFycmFuZ2UoZGVzYyhpZm9yZXN0X3Njb3JlKSkgJT4lXG4gIHNlbGVjdChcbiAgICBpZm9yZXN0X3Njb3JlLFxuICAgIGZyYXVkX2ZsYWcsXG4gICAgYW5vbWFseV9zY29yZSxcbiAgICB0cmFuc2FjdGlvbl9hbW91bnRcbiAgKSAlPiVcbiAgaGVhZCgyMClcbmBgYCJ9 -->
+<pre class="r"><code>#Training
+library(solitude)
 
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-### 3.1.1 DBSCAN
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubGlicmFyeShkYnNjYW4pXG5cbmRiIDwtIGRic2NhbihcbiAgdW5zdXBfc2NhbGVkLFxuICBlcHMgPSAxLjUsXG4gIG1pblB0cyA9IDIwXG4pXG5cbmRmX2RiIDwtIGZyYXVkX2RmICU+JVxuICBtdXRhdGUoXG4gICAgY2x1c3RlciA9IGRiJGNsdXN0ZXIsXG4gICAgbm9pc2UgPSBkYiRjbHVzdGVyID09IDBcbiAgKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-library(dbscan)
-
-db &lt;- dbscan(
-  unsup_scaled,
-  eps = 1.5,
-  minPts = 20
+iso &lt;- isolationForest$new(
+  sample_size = 256,
+  num_trees = 100,
+  seed = 123
 )
 
-df_db &lt;- fraud_df %&gt;%
+iso$fit(as.data.frame(unsup_scaled))
+
+#Sinh anomaly_score
+iso_scores &lt;- iso$predict(
+  as.data.frame(unsup_scaled)
+)
+
+
+df_iso &lt;- fraud_df %&gt;%
   mutate(
-    cluster = db$cluster,
-    noise = db$cluster == 0
-  )</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
+    iforest_score = iso_scores$anomaly_score
+  )
 
-&lt;!-- rnb-chunk-end --&gt;
+#Top anomalies
+df_iso %&gt;%
+  arrange(desc(iforest_score)) %&gt;%
+  select(
+    iforest_score,
+    fraud_flag,
+    anomaly_score,
+    transaction_amount
+  ) %&gt;%
+  head(20)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZfaXNvIDwtIGRmX2lzbyAlPiVcbiAgbXV0YXRlKFxuICAgIGRlY2lsZSA9IG50aWxlKGlmb3Jlc3Rfc2NvcmUsIDEwKVxuICApXG5cbmZyYXVkX2RlY2lsZSA8LSBkZl9pc28gJT4lXG4gIGdyb3VwX2J5KGRlY2lsZSkgJT4lXG4gIHN1bW1hcmlzZShcbiAgICBmcmF1ZF9yYXRlID0gbWVhbihmcmF1ZF9mbGFnKSAqIDEwMFxuICApXG5cbmdncGxvdChcbiAgZnJhdWRfZGVjaWxlLFxuICBhZXMoXG4gICAgZmFjdG9yKGRlY2lsZSksXG4gICAgZnJhdWRfcmF0ZVxuICApXG4pICtcbiAgZ2VvbV9jb2woZmlsbCA9IFwiI0U2Mzk0NlwiKSArXG4gIGdlb21fdGV4dChcbiAgICBhZXMobGFiZWwgPSBzcHJpbnRmKFwiJS4xZiUlXCIsIGZyYXVkX3JhdGUpKSxcbiAgICB2anVzdCA9IC0wLjMsXG4gICAgZm9udGZhY2UgPSBcImJvbGRcIlxuICApICtcbiAgbGFicyhcbiAgICB0aXRsZSA9IFwiRnJhdWQgUmF0ZSBieSBJc29sYXRpb24gRm9yZXN0IFJpc2sgRGVjaWxlXCIsXG4gICAgeCA9IFwiSXNvbGF0aW9uIEZvcmVzdCBEZWNpbGVcIixcbiAgICB5ID0gXCJGcmF1ZCBSYXRlICglKVwiXG4gICkgK1xuICB0aGVtZV9taW5pbWFsKClcbmBgYCJ9 -->
+<pre class="r"><code>df_iso &lt;- df_iso %&gt;%
+  mutate(
+    decile = ntile(iforest_score, 10)
+  )
 
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-**Fraud rate của Noise vs Cluster**
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGJfc3VtbWFyeSA8LSBkZl9kYiAlPiVcbiAgZ3JvdXBfYnkobm9pc2UpICU+JVxuICBzdW1tYXJpc2UoXG4gICAgbiA9IG4oKSxcbiAgICBmcmF1ZF9yYXRlID0gbWVhbihmcmF1ZF9mbGFnKSAqIDEwMFxuICApXG5cbmdncGxvdChcbiAgZGJfc3VtbWFyeSxcbiAgYWVzKFxuICAgIHggPSBmYWN0b3Iobm9pc2UpLFxuICAgIHkgPSBmcmF1ZF9yYXRlXG4gIClcbikgK1xuICBnZW9tX2NvbCgpICtcbiAgZ2VvbV90ZXh0KFxuICAgIGFlcyhsYWJlbCA9IHJvdW5kKGZyYXVkX3JhdGUsMSkpLFxuICAgIHZqdXN0ID0gLTAuM1xuICApICtcbiAgbGFicyhcbiAgICB4ID0gXFxcXCxcbiAgICB5ID0gXFxGcmF1ZCBSYXRlICglKVxcLFxuICAgIHRpdGxlID0gXFxGcmF1ZCBSYXRlOiBOb2lzZSB2cyBSZWd1bGFyIENsdXN0ZXJzXFxcbiAgKSArXG4gIHRoZW1lX21pbmltYWwoKVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-db_summary &lt;- df_db %&gt;%
-  group_by(noise) %&gt;%
+fraud_decile &lt;- df_iso %&gt;%
+  group_by(decile) %&gt;%
   summarise(
-    n = n(),
     fraud_rate = mean(fraud_flag) * 100
   )
 
 ggplot(
-  db_summary,
+  fraud_decile,
   aes(
-    x = factor(noise),
-    y = fraud_rate
+    factor(decile),
+    fraud_rate
   )
 ) +
-  geom_col() +
+  geom_col(fill = &quot;#E63946&quot;) +
   geom_text(
-    aes(label = round(fraud_rate,1)),
-    vjust = -0.3
+    aes(label = sprintf(&quot;%.1f%%&quot;, fraud_rate)),
+    vjust = -0.3,
+    fontface = &quot;bold&quot;
   ) +
   labs(
-    x = \\,
-    y = \Fraud Rate (%)\,
-    title = \Fraud Rate: Noise vs Regular Clusters\
+    title = &quot;Fraud Rate by Isolation Forest Risk Decile&quot;,
+    x = &quot;Isolation Forest Decile&quot;,
+    y = &quot;Fraud Rate (%)&quot;
   ) +
   theme_minimal()</code></pre>
-<p>```</p>
 <!-- rnb-source-end -->
-<!-- rnb-plot-begin -->
-<p><img role="img" src="data:image/png;base64,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Aekc1AgkEJDOQY1AAgHpHNQIJBCQzkGNQAIB6RzUCCQQkM5BjUACAekc1AgkEJDOQY1AAgHpHNQIJBCQzkGNQAIB6RzUCCQQkM5BzSoC+cWGSo8IoJHOQZfVB3JTpUcE0EjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoKY7kI8//vCXH3+yxllZufSIABrpHNQsDuTxn9/ojT3300/XPEsrkx4RQCOdg5pFgXzU1HHk+Xtrn62VSI8IoJHOQU07kI/e7Ddx73s//eXHfR++d2N3EpkeEUAjnYOaViD/135v75WZXY+P3uz/6o/XN0srkx4RQCOdg5q5QB6/0bvyautBx/f3e1cX7or87b88OPhH/2Elc7Z86REBNNI5qJkL5JM/fGVhCI/f+/1fL/j1BwdDr61gxlYgPSKARjoHNfOb2J3n9Txe8Luvbr/YX3v87e0Xf77cmVqR9IgAGukc1FzqRPHPRuuOnx386XJmZsXSIwJopHNQI5BAQDoHNWcH8uOzn/z166NN7O//ZubXX2yo9IgAGukcdKkG8vju/uCEyBfOupDmdz8ZHKP5wd/M/ja9hF3SIwJopHPQpRjIJy+Pr6NZfH7PyG9vDwL54pac55MeEUAjnYOazkDe6e298quPP3pvv/dM55O/PHjxZ8NK2gcJXEg6BzVdgXzy0t47wx8e7j+16AzIgW/eHZXxy4MfrWDOli89IoBGOgc18yeK/6fxVddPXhp3sfmh7evXR0dnJn9uuvSIABrpHNTMB/Kl8Y0pjt/oXR/+5rB7J6RAAt9SOgc185vY9/fHB64Pe729azev7fd6t7qee7qJ/cPPVzmPy5IeEUAjnYOa1j7I4/cGt/P5dFjIoevdT/7sYHQepIM0wMWkc1Cz4CDN8d3+yuOrg9uK37x58+z7iY9vVrEdx2gEEjZHOgc1C49iD+6Z+/Tblae73RnwbaRzUNNxms+jl/uJ3InbiE9Jjwigkc5BTeeJ4g9e3pVvWmikRwTQSOegZtE+yA/f/+Vgz+P9/V7vzCuxt016RACNdA5qWoF8OLoGe7B93RzQ3hHpEQE00jmomQ/kw/3x2T3DKw0nB7R3Q3pEAI10DmrmA3lndGzmo5fH96h49Gav81LDbZMeEUAjnYOa1qWGrUuwH/0zgQSWLJ2DmvMDuTvSIwJopHNQ0/5e7KuDTexHb5x5o9ztlB4RQCOdg5r5fZBHvemDNLslPSKARjoHNZ2n+exeHwUSNkc6BzULThR//P7773+y/jlZvfSIABrpHNRc6nuxt0x6RACNdA5q5gPZuer4eMUzsgbpEQE00jmomT/N5w8XX319/N7vb/9ZP+kRATTSOaiZP83nzd7eq61EDi7Kfn77z/pJjwigkc5BTWsf5OBLaWZvc/bRmztyQXZ6RACNdA5q2gdpBrcT7/We+/H7v/r444/ef+vG4G+7cWPI9IgAGukc1Cw6ij1K5KndyKNAwgZJ56Bm8Wk+xw9uTC6oee7t7d/5OJYeEUAjnYOaM86D/LhvfTOyBukRATTSOahxojgQkM5BjUACAekc1AgkEJDOQY1AAgHpHNQIJBCQzkGNQAIB6RzUCCQQkM5BjUACAekc1AgkEJDOQY1AAgHpHNR0BvL4/bf+6NOT41262DA9IoBGOgc1HYF8NPhuw6d+ffLkpR36euz0iAAa6RzULA7k0X5vEsje7hQyPSKARjoHNQsD2c/i0/eevNQP5OAG47fWPU+rkh4RQCOdg5qFgTwcrDaOAtn/+Zk1z9LKpEcE0EjnoGZRII/fGKw1jgP5cH9ntrHTIwJopHNQsyiQozSOAzn+YxekRwTQSOegRiCBgHQOahZvYu+905TxaHcOY6dHBNBI56Bm4UGaO4MDM6NAHr/hIA2wdOkc1CwM5MP93vVRIPt9HKxN7ob0iAAa6RzULD5R/LDX2/sH+3vfG1xPszMrkAIJmyOdg5qOSw0PexMvrHd+Vik9IoBGOgc1XTerePzes/06Xnn+3lrnZrXSIwJopHNQ43ZnQEA6BzULA/n4k9Ofj9//qdN8gCVL56Cm+0TxRX/ZbukRATTSOag5N5AP9wUSWLZ0DmrmAnn8H69du/Zsr3fl2kTPlTTA0qVzUDO/BnnUa7kembEVSI8IoJHOQU1rE/vu3BrkzbcTs7US6REBNNI5qDl3H+QOSY8IoJHOQc3Cu/kMvs9wB6VHBNBI56DGieJAQDoHNYVAPt6V1cn0iAAa6RzULA7k8YObI4PzfHZmh2R6RACNdA5qFgby+I3p03wEEli2dA5qOr72dcpzO3OeT3pEAI10Dmo6vvb16r3hF9Mc39/fnfPEBRI2RzoHNYvPgxx8L/bhMI1PXvKVC8DSpXNQ032i+NHoyxaOduc7F9IjAmikc1DTHciH+8O7VIz/2AXpEQE00jmoWbwPchDI8QWHO3TdYXpEAI10Dmo6DtLcmuyJdD9IYAXSOajpOM3n6XsnJ3d6z/Q3ru+6HySwdOkc1CwMZH/lsb/aeNTr7d181v0ggeVL56Bm8aWGo+3qu8MTxXdmBVIgYXOkc1DTcbOK4w8HWXxw49q1V3amjwIJmyOdgxq3OwMC0jmoOT+Qx//dUWxgydI5qFkUyMcff3L6lwcvO80HWLZ0Dmragby/3+v19l4d/eX4rtudAcuXzkFN+1sNp7/s9cH+Lh3GTo8IoJHOQc2C78Xe+97Nf97/33dGsZysS+6A9IgAGukc1MwH8k7vqXsngxMh+6uQdwarj/cSc7Ua6REBNNI5qJkL5Ogy7JPB1YZXf7FTq48nAgkbJJ2DmrlANvfHfbi/Y6uPJwIJGySdg5pWIMfHrJ+81Ou9sCtHZ8bSIwJopHNQc0Ygd+ZO4hPpEQE00jmo6Q7k7nwXzUR6RACNdA5qugO5M+eHN9IjAmikc1AjkEBAOgc1AgkEpHNQI5BAQDoHNa1A9q5cG3i2N/7h2rXndqWU6REBNNI5qGkHsmVnViXTIwJopHNQMx/IG9darEECy5bOQc0qvnLhiw2VHhFAI52DLqsP5KZKjwigkc5BjUACAekc1AgkEJDOQY1AAgHpHNQIJBCQzkGNQAIB6RzUCCQQkM5BjUACAekc1AgkEJDOQY1AAgHpHNQIJBCQzkHN/Pdiv3Wz5Y925csN0yMCaKRzUON2Z0BAOgc1i2939uwgjFeuXRv84XZnwNKlc1CzeB/knd7Tvxr+8Ojl3gvrnJ2VSo8IoJHOQc3CQB72rk72Ox7f6V1f4+ysVHpEAI10DmoWBfL4jb13mr883L/qIA2wZOkc1CwK5Mw3Gu7Q1xumRwTQSOegZnEgZ9YgBRJYtnQOahZvYk/td7zTs4kNLFs6BzULD9Ic9SaFPP5Fr3drnfOzSukRATTSOahZGMj+KmSv972bN2/e6P/5zLpnaWXSIwJopHNQs/g8yOM3m+toXtiVDWyBhA2SzkFN180qHr01uJrmyiufrHVuVis9IoBGOgc17uYDBKRzUCOQQEA6BzUCCQSkc1Cz8DzIt9wPElipdA5qFl9J436QwEqlc1CzMJCjm0KObwvpfpDA0qVzUHPOPsjju7tztzOBhM2RzkHNuQdp7rjUEFi6dA5qzg3kw/2dudYwPSKARjoHNecG0v0ggeVL56CmsAYpkMCypXNQU9gH6X6QwLKlc1Cz8ETxD9+f+LOXe7tzGDs9IoBGOgc1558ovjNb2AIJmyOdg5rzArnnfpDA8qVzUONmFUBAOgc1AgkEpHNQI5BAQDoHNYVAPt6VvZDpEQE00jmo6fjSrgfje0Feu3Ztdw5jp0cE0EjnoKb7a1937zyf9IgAGukc1CwM5OF0H597e93ztCrpEQE00jmoWXglzRu9q/eO39h75+T4/v7uXEgjkLA50jmo6ThR/NZgNfL68Od+J3dEekQAjXQOahYHcrDb8ag3vBHk+I9dkB4RQCOdg5ruQD7cH97GZ/zHLkiPCKCRzkHN4n2Qg0CO75TrhrnA8qVzUNNxkObWZE+kG+YCK5DOQU3HaT5P3xvcKveZ/sb1XTfMBZYunYOahYHsrzz2VxuPer29m8+6YS6wfOkc1Cy+1HC0XX13eKL4zqxACiRsjnQOajpuVnH84SCLD25cu/bKzvRRIGFzpHNQszCQD+6tezbWIj0igEY6BzUdR7F3Zr/jtPSIABrpHNR0nyi+e9IjAmikc1AjkEBAOgc1HedBPrM7h2ZOpUcE0EjnoGZhIB/f7fWe+/H7Y7/clVimRwTQSOeg5rzvxXZHcWAF0jmoEUggIJ2DGl/7CgSkc1AjkEBAOgc1AgkEpHNQMxfIJzee25U9jm3pEQE00jmomQ9kc47440/WPzMrlh4RQCOdg5quQO7i1TTpEQE00jmoEUggIJ2DGoEEAtI5qBFIICCdgxqBBALSOagRSCAgnYMagQQC0jmoEUggIJ2DGoEEAtI5qGkFsnfl2sCzvfEP167tzMWH6REBNNI5qGkHsmVnViXTIwJopHNQ07pZxbUWa5DAsqVzUON2Z0BAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNZcP5DfvvvjzJczIGqRHBNBI56Dm8oH87EAggQtK56Dm0oH86rZAAheVzkHNZQP5zbs/+IlAAheUzkHNZQP5wYv/zT5I4KLSOai5ZCC/PHitfZDmiw2VHhFAI52DLssM5Nev//BzgQQuLJ2DLssM5Af9NjrNB7iwdA5qLhXIzw5eOxFI4OLSOai5TCC/uv2j/v8KJHBh6RzUXCaQnx1MfP83S5uhFUqPCKCRzkGNQAIB6RzUuBYbCEjnoFR4CW0AAAhUSURBVEYggYB0DmoEEghI56BGIIGAdA5q3DAXCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qBBIISOegRiCBgHQOagQSCEjnoEYggYB0DmoEEghI56BGIIGAdA5qVhHILzZUekQAjXQOuqw+kJsqPSKARjoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQI5BAQDoHNQIJBKRzUCOQQEA6BzUCCQSkc1AjkEBAOgc1AgkEpHNQc8lA/t+fHBz84GfLmZWVS48IoJHOQc3lAvnlwdCfLmlmViw9IoBGOgc1lwrk168fvHbyzV8efP83y5qdlUqPCKCRzkHNpQL52cGPBn980M/kNkiPCKCRzkHNpQL5wWjj+qvbP1rOzKxYekQAjXQOai4TyG/eHW1bf/36Dz+f/v0XGyo9IoBGOgddlhfIr1+fBHJ2J2R6CQG+pWUGcrTmOFmThDWYH8KwOgLJlhFI1mcVm9iwQgLJ+qziIA2skECyPpc7zefFnw/+2JbTfNgJAsn6fJdOFGcnCCTrc9lLDf/159tzqSE7QSBZn+/SzSrYCQLJ+nyXbnfGThBI1ue7dMNcdoJAsj4CyZYRSNZHINkyAsn6CCRbRiBZH4Fkywgk6yOQbBmBZH0Eki0jkKyPQLJlBJL1EUi2jECyPgLJlhFI1kcg2TICyfoIJFtGIFkfgWTLCCTrI5BsGYFkfQSSLSOQrI9AsmUEkvURSLaMQLI+AsmWEUjWRyDZMgLJ+ggkW0YgWR+BZMsIJOsjkAAdBBKgg0ACdBBIgA4CCdBBIAE6CCRAB4EE6CCQAB0EEqCDQAJ0EEiADgIJ0EEgAToIJBvnq9sHjRd/fvrXF//V34z+848mj/yg/59nHv5abq7ZRQLJxukK5PBvAskaCSSb6evXf/j56KcmiL9792Dwu3YgJ4+EJRNINtOCQPZ/NwqiQLImAslmWhTISRAFkjURSDaTNUg2gECymRYE8m9/Yh8k6yWQbKbpQJaPYislyyWQbKYFgXzxTz4f/V0gWROBZDPNb2L/7t2DUR9tYrM+Aslmau2D/Obd8QriaRC/eVcgWSmBZDO1D9L0N6VfG/2X7/9m8pjBTwLJyggkm2nBUewvRwdp+quSfzr5xeiotkCyIgLJZloQyMlGdj+U/77/5///q9vDUgokKyOQbKZFJ4pPNrL/YubeFNM3q5BKlkog2UwLLzX8bLSRffK3/+724O5nfz3+7wLJiggkQAeBBOggkAAdBBKgg0ACdBBIgA4CCdBBIAE6CCRAB4EE6CCQAB0EEqCDQAJ0EEiADgIJ0EEgAToIJEAHgQToIJAAHQQSoINAAnQQSIAOAgnQQSABOggkQAeBBOggkAAdBBKgg0ACdBBIgA4CCdBBIAE6CCRAB4EE6CCQAB0EEqCDQAJ0EEiADgIJ0EEgAToIJEAHgQToIJAAHQQSoINAAnQQSIAOAgnQQSABOggkQAeBBOggkAAd/g7R4c7U4z6OHgAAAABJRU5ErkJggg==" /></p>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p><strong>-&gt; Nhóm các giao dịch có IF score càng nhỏ thì số lượng
+fraud thực tế càng cao</strong></p>
+</div>
+<div id="supervised-model" class="section level2">
+<h2>3.2. Supervised model</h2>
+<p>Biến đổi dữ liệu</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGZfbW9kZWwgPC0gZnJhdWRfZGYgJT4lXG4gIHNlbGVjdCgtdHJhbnNhY3Rpb25faWQpJT4lXG4gIG11dGF0ZShcbiAgICBmcmF1ZF9mbGFnID0gYXMuZmFjdG9yKGZyYXVkX2ZsYWcpLFxuICAgIHBheW1lbnRfY2hhbm5lbCA9IGFzLmZhY3RvcihwYXltZW50X2NoYW5uZWwpLFxuICAgIGF1dGhlbnRpY2F0aW9uX3R5cGUgPSBhcy5mYWN0b3IoYXV0aGVudGljYXRpb25fdHlwZSlcbiAgKVxuXG5zdHIoZGZfbW9kZWwpXG5gYGAifQ== -->
+<pre class="r"><code>df_model &lt;- fraud_df %&gt;%
+  select(-transaction_id)%&gt;%
+  mutate(
+    fraud_flag = as.factor(fraud_flag),
+    payment_channel = as.factor(payment_channel),
+    authentication_type = as.factor(authentication_type)
+  )
+
+str(df_model)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoidGliYmxlIFsxMCwwMDAgw5cgMTldIChTMzogdGJsX2RmL3RibC9kYXRhLmZyYW1lKVxuICQgdHJhbnNhY3Rpb25fYW1vdW50ICAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDE3ODI5IDE2NDAyIDk2NzggMTkwMTMgMTM4MzUgLi4uXG4gJCBsb2dpbl9hdHRlbXB0cyAgICAgICAgICAgICAgICA6IG51bSBbMToxMDAwMF0gNCAxIDggNSAzIDkgNSA3IDcgMSAuLi5cbiAkIGRldmljZV9yaXNrX3Njb3JlICAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSAxMiAzNC4zIDY3LjggMTcuOCA4OC45IDgxLjUgMTcuMiA0Ni42IDE1LjkgODQuNSAuLi5cbiAkIHRyYW5zZmVyX2ZyZXF1ZW5jeSAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSAxMyAxNyAzOSA0MiA2MyA1NSA3NSAzNCAzNyA2MSAuLi5cbiAkIGFub21hbHlfc2NvcmUgICAgICAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSAwLjM3IDAuMjYgMC4xNSAwLjU1IDAuMjQgMC4yNCAwLjU2IDAuNDIgMC4yIDAuMzggLi4uXG4gJCBhY2NvdW50X2FnZV9kYXlzICAgICAgICAgICAgICA6IG51bSBbMToxMDAwMF0gMjM1NCAzMTgxIDEzOTAgMzcxNiA0Njk0IC4uLlxuICQgdHJhbnNhY3Rpb25fdGltZV9ob3VyICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDIyIDE3IDMgMTYgMTYgMTIgOCA0IDExIDE0IC4uLlxuICQgZmFpbGVkX3RyYW5zYWN0aW9uc19sYXN0XzMwZCAgOiBudW0gWzE6MTAwMDBdIDI1IDE1IDIgNiAxMCAwIDE4IDEzIDEzIDE3IC4uLlxuICQgYXZnX21vbnRobHlfYmFsYW5jZSAgICAgICAgICAgOiBudW0gWzE6MTAwMDBdIDExMjc2MCAxMTg5MDAgNDA4MTY5IDgwNzcyIDM4MjI2NSAuLi5cbiAkIGRhaWx5X3RyYW5zYWN0aW9uX2NvdW50ICAgICAgIDogbnVtIFsxOjEwMDAwXSA2MyA4MyA5IDc4IDE3IDg1IDEyIDYzIDEwNCAxNyAuLi5cbiAkIGdlb19kaXN0YW5jZV9rbSAgICAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSAzMTg5IDgzOSAzOTM4IDExMTExIDMxNzEgLi4uXG4gJCBzZXNzaW9uX2R1cmF0aW9uX21pbnV0ZXMgICAgICA6IG51bSBbMToxMDAwMF0gOTIgNjMgODAgMTEgODcgOTkgOTcgMjAgMjAgMzQgLi4uXG4gJCB0cmFuc2FjdGlvbl92ZWxvY2l0eV9zY29yZSAgICA6IG51bSBbMToxMDAwMF0gNzEuOCAxMS44IDM1LjcgNzQuOCAwIDQzIDUwLjYgOTcuNyA3MyA0Ny4yIC4uLlxuICQgcGF5bWVudF9jaGFubmVsICAgICAgICAgICAgICAgOiBGYWN0b3Igdy8gNCBsZXZlbHMgXCJBVE1cIixcIk1vYmlsZSBBcHBcIiwuLjogMyA0IDEgMiAyIDIgMiAyIDQgNCAuLi5cbiAkIGF1dGhlbnRpY2F0aW9uX3R5cGUgICAgICAgICAgIDogRmFjdG9yIHcvIDQgbGV2ZWxzIFwiQmlvbWV0cmljXCIsXCJPVFBcIiwuLjogMiAxIDIgMiAyIDQgMiAyIDQgNCAuLi5cbiAkIGNhcmRfcHJlc2VudF9mbGFnICAgICAgICAgICAgIDogbnVtIFsxOjEwMDAwXSAxIDAgMSAxIDEgMCAxIDEgMSAwIC4uLlxuICQgaW50ZXJuYXRpb25hbF90cmFuc2FjdGlvbl9mbGFnOiBudW0gWzE6MTAwMDBdIDEgMCAwIDEgMCAwIDAgMSAxIDEgLi4uXG4gJCBzdXNwaWNpb3VzX2lwX2ZsYWcgICAgICAgICAgICA6IG51bSBbMToxMDAwMF0gMSAxIDEgMCAwIDEgMCAwIDAgMSAuLi5cbiAkIGZyYXVkX2ZsYWcgICAgICAgICAgICAgICAgICAgIDogRmFjdG9yIHcvIDIgbGV2ZWxzIFwiRkFMU0VcIixcIlRSVUVcIjogMSAxIDEgMSAxIDEgMSAxIDEgMSAuLi5cbiJ9 -->
+<pre><code>tibble [10,000 × 19] (S3: tbl_df/tbl/data.frame)
+ $ transaction_amount            : num [1:10000] 17829 16402 9678 19013 13835 ...
+ $ login_attempts                : num [1:10000] 4 1 8 5 3 9 5 7 7 1 ...
+ $ device_risk_score             : num [1:10000] 12 34.3 67.8 17.8 88.9 81.5 17.2 46.6 15.9 84.5 ...
+ $ transfer_frequency            : num [1:10000] 13 17 39 42 63 55 75 34 37 61 ...
+ $ anomaly_score                 : num [1:10000] 0.37 0.26 0.15 0.55 0.24 0.24 0.56 0.42 0.2 0.38 ...
+ $ account_age_days              : num [1:10000] 2354 3181 1390 3716 4694 ...
+ $ transaction_time_hour         : num [1:10000] 22 17 3 16 16 12 8 4 11 14 ...
+ $ failed_transactions_last_30d  : num [1:10000] 25 15 2 6 10 0 18 13 13 17 ...
+ $ avg_monthly_balance           : num [1:10000] 112760 118900 408169 80772 382265 ...
+ $ daily_transaction_count       : num [1:10000] 63 83 9 78 17 85 12 63 104 17 ...
+ $ geo_distance_km               : num [1:10000] 3189 839 3938 11111 3171 ...
+ $ session_duration_minutes      : num [1:10000] 92 63 80 11 87 99 97 20 20 34 ...
+ $ transaction_velocity_score    : num [1:10000] 71.8 11.8 35.7 74.8 0 43 50.6 97.7 73 47.2 ...
+ $ payment_channel               : Factor w/ 4 levels &quot;ATM&quot;,&quot;Mobile App&quot;,..: 3 4 1 2 2 2 2 2 4 4 ...
+ $ authentication_type           : Factor w/ 4 levels &quot;Biometric&quot;,&quot;OTP&quot;,..: 2 1 2 2 2 4 2 2 4 4 ...
+ $ card_present_flag             : num [1:10000] 1 0 1 1 1 0 1 1 1 0 ...
+ $ international_transaction_flag: num [1:10000] 1 0 0 1 0 0 0 1 1 1 ...
+ $ suspicious_ip_flag            : num [1:10000] 1 1 1 0 0 1 0 0 0 1 ...
+ $ fraud_flag                    : Factor w/ 2 levels &quot;FALSE&quot;,&quot;TRUE&quot;: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVmlldyhkZl9tb2RlbClcbmBgYCJ9 -->
+<pre class="r"><code>View(df_model)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Chia dữ liệu thành tập train/test</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjYXJldClcblxuc2V0LnNlZWQoMTIzKVxuXG50cmFpbl9pZHggPC0gY3JlYXRlRGF0YVBhcnRpdGlvbihcbiAgZGZfbW9kZWwkZnJhdWRfZmxhZyxcbiAgcCA9IDAuOCxcbiAgbGlzdCA9IEZBTFNFXG4pXG5cbnRyYWluX3NldCA8LSBkZl9tb2RlbFt0cmFpbl9pZHgsIF1cbnRlc3Rfc2V0ICA8LSBkZl9tb2RlbFstdHJhaW5faWR4LCBdXG5gYGAifQ== -->
+<pre class="r"><code>library(caret)
+
+set.seed(123)
+
+train_idx &lt;- createDataPartition(
+  df_model$fraud_flag,
+  p = 0.8,
+  list = FALSE
+)
+
+train_set &lt;- df_model[train_idx, ]
+test_set  &lt;- df_model[-train_idx, ]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="random-forest" class="section level3">
+<h3>3.2.1. Random forest</h3>
+<p>Ước lượng mô hình</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShyYW5kb21Gb3Jlc3QpXG5cbnJmX21vZGVsIDwtIHJhbmRvbUZvcmVzdChcbiAgZnJhdWRfZmxhZyB+IC4sXG4gIGRhdGEgPSB0cmFpbl9zZXQsXG4gIG50cmVlID0gNTAwLFxuICBpbXBvcnRhbmNlID0gVFJVRVxuKVxuYGBgIn0= -->
+<pre class="r"><code>library(randomForest)
+
+rf_model &lt;- randomForest(
+  fraud_flag ~ .,
+  data = train_set,
+  ntree = 500,
+  importance = TRUE
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Dự báo</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmZfcHJvYiA8LSBwcmVkaWN0KFxuICByZl9tb2RlbCxcbiAgdGVzdF9zZXQsXG4gIHR5cGUgPSBcInByb2JcIlxuKVssMl1cbmBgYCJ9 -->
+<pre class="r"><code>rf_prob &lt;- predict(
+  rf_model,
+  test_set,
+  type = &quot;prob&quot;
+)[,2]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Tính toán ROC - AUC</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShwUk9DKVxuXG5yb2NfcmYgPC0gcm9jKFxuICB0ZXN0X3NldCRmcmF1ZF9mbGFnLFxuICByZl9wcm9iXG4pXG5gYGAifQ== -->
+<pre class="r"><code>library(pROC)
+
+roc_rf &lt;- roc(
+  test_set$fraud_flag,
+  rf_prob
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiU2V0dGluZyBsZXZlbHM6IGNvbnRyb2wgPSBGQUxTRSwgY2FzZSA9IFRSVUVcblNldHRpbmcgZGlyZWN0aW9uOiBjb250cm9scyA8IGNhc2VzXG4ifQ== -->
+<pre><code>Setting levels: control = FALSE, case = TRUE
+Setting direction: controls &lt; cases</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXVjKHJvY19yZilcbmBgYCJ9 -->
+<pre class="r"><code>auc(roc_rf)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQXJlYSB1bmRlciB0aGUgY3VydmU6IDAuOTc1NVxuIn0= -->
+<pre><code>Area under the curve: 0.9755</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="xgboost" class="section level3">
+<h3>3.2.2. XGBoost</h3>
+<p>Chuẩn bị dữ liệu cho thuật toán</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjYXJldClcbmR1bW15IDwtIGR1bW15VmFycyhcbiAgZnJhdWRfZmxhZyB+IC4sXG4gIGRhdGEgPSBkZl9tb2RlbCBcbilcblxudHJhaW5feCA8LSBwcmVkaWN0KGR1bW15LCB0cmFpbl9zZXQpXG50ZXN0X3ggIDwtIHByZWRpY3QoZHVtbXksIHRlc3Rfc2V0KVxuXG4jVGFyZ2V0IFxudHJhaW5feSA8LSBpZmVsc2UoXG4gIHRyYWluX3NldCRmcmF1ZF9mbGFnID09IFRSVUUsXG4gIDEsXG4gIDBcbilcblxudGVzdF95IDwtIGlmZWxzZShcbiAgdGVzdF9zZXQkZnJhdWRfZmxhZyA9PSBUUlVFLFxuICAxLFxuICAwXG4pXG5cbiNEbWF0cml4IFxubGlicmFyeSh4Z2Jvb3N0KVxuXG5kdHJhaW4gPC0geGdiLkRNYXRyaXgoXG4gIGRhdGEgPSB0cmFpbl94LFxuICBsYWJlbCA9IHRyYWluX3lcbilcblxuZHRlc3QgPC0geGdiLkRNYXRyaXgoXG4gIGRhdGEgPSB0ZXN0X3gsXG4gIGxhYmVsID0gdGVzdF95XG4pXG5gYGAifQ== -->
+<pre class="r"><code>library(caret)
+dummy &lt;- dummyVars(
+  fraud_flag ~ .,
+  data = df_model 
+)
+
+train_x &lt;- predict(dummy, train_set)
+test_x  &lt;- predict(dummy, test_set)
+
+#Target 
+train_y &lt;- ifelse(
+  train_set$fraud_flag == TRUE,
+  1,
+  0
+)
+
+test_y &lt;- ifelse(
+  test_set$fraud_flag == TRUE,
+  1,
+  0
+)
+
+#Dmatrix 
+library(xgboost)
+
+dtrain &lt;- xgb.DMatrix(
+  data = train_x,
+  label = train_y
+)
+
+dtest &lt;- xgb.DMatrix(
+  data = test_x,
+  label = test_y
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Training</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueGdiX21vZGVsIDwtIHhnYm9vc3QoXG4gIGRhdGEgPSBkdHJhaW4sXG4gIG5yb3VuZHMgPSAyMDAsXG4gIG9iamVjdGl2ZSA9IFwiYmluYXJ5OmxvZ2lzdGljXCIsXG4gIGV2YWxfbWV0cmljID0gXCJhdWNcIixcbiAgbWF4X2RlcHRoID0gNixcbiAgZXRhID0gMC4wNSxcbiAgdmVyYm9zZSA9IDBcbilcbmBgYCJ9 -->
+<pre class="r"><code>xgb_model &lt;- xgboost(
+  data = dtrain,
+  nrounds = 200,
+  objective = &quot;binary:logistic&quot;,
+  eval_metric = &quot;auc&quot;,
+  max_depth = 6,
+  eta = 0.05,
+  verbose = 0
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Predict</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueGdiX3Byb2IgPC0gcHJlZGljdChcbiAgeGdiX21vZGVsLFxuICBkdGVzdFxuKVxuYGBgIn0= -->
+<pre class="r"><code>xgb_prob &lt;- predict(
+  xgb_model,
+  dtest
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Tính toán roc-auc</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm9jX3hnYiA8LSByb2MoXG4gIHRlc3RfeSxcbiAgeGdiX3Byb2JcbilcbmBgYCJ9 -->
+<pre class="r"><code>roc_xgb &lt;- roc(
+  test_y,
+  xgb_prob
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiU2V0dGluZyBsZXZlbHM6IGNvbnRyb2wgPSAwLCBjYXNlID0gMVxuU2V0dGluZyBkaXJlY3Rpb246IGNvbnRyb2xzIDwgY2FzZXNcbiJ9 -->
+<pre><code>Setting levels: control = 0, case = 1
+Setting direction: controls &lt; cases</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXVjKHJvY194Z2IpXG5gYGAifQ== -->
+<pre class="r"><code>auc(roc_xgb)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQXJlYSB1bmRlciB0aGUgY3VydmU6IDAuOTgwN1xuIn0= -->
+<pre><code>Area under the curve: 0.9807</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="so-sánh-2-mô-hình" class="section level3">
+<h3>3.2.3. So sánh 2 mô hình</h3>
+<p>ROC Curve</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChcbiAgcm9jX3JmLFxuICBjb2wgPSBcImJsdWVcIlxuKVxuXG5wbG90KFxuICByb2NfeGdiLFxuICBhZGQgPSBUUlVFLFxuICBjb2wgPSBcInJlZFwiXG4pXG5gYGAifQ== -->
+<pre class="r"><code>plot(
+  roc_rf,
+  col = &quot;blue&quot;
+)
+
+plot(
+  roc_xgb,
+  add = TRUE,
+  col = &quot;red&quot;
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5sZWdlbmQoXG4gIFwiYm90dG9tcmlnaHRcIixcbiAgbGVnZW5kID0gYyhcIlJGXCIsIFwiWEdCXCIpLFxuICBjb2wgPSBjKFwiYmx1ZVwiLCBcInJlZFwiKSxcbiAgbHdkID0gMlxuKVxuYGBgIn0= -->
+<pre class="r"><code>
+legend(
+  &quot;bottomright&quot;,
+  legend = c(&quot;RF&quot;, &quot;XGB&quot;),
+  col = c(&quot;blue&quot;, &quot;red&quot;),
+  lwd = 2
+)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-plot-begin eyJoZWlnaHQiOjM2OS41OTIxLCJ3aWR0aCI6NTk4LCJzaXplX2JlaGF2aW9yIjowLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img role="img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABGEAAAK0CAMAAACUbdCmAAAA7VBMVEUAAAAAADoAAGYAAP8AOjoAOmYAOpAAZpAAZrY6AAA6AGY6OgA6Ojo6OmY6OpA6ZmY6ZpA6ZrY6kLY6kNtmAABmADpmOgBmOjpmOpBmZjpmZmZmZpBmkJBmkLZmkNtmtpBmtttmtv+QOgCQOjqQZjqQZmaQkGaQkLaQtpCQtraQttuQ29uQ2/+pqam2ZgC2Zjq2Zma2kDq2kGa2kJC2kLa2tma2tpC2tra2ttu229u22/+2/9u2///bkDrbkGbbtmbbtpDbtrbb27bb29vb2//b/7bb////AAD/tmb/25D/27b/29v//7b//9v///8A5Yj3AAAACXBIWXMAABuuAAAbrgGMXXP4AAAgAElEQVR4nO3dC3vTaJqgYRkSFi9kGjrZZNtMZiFDhmmGcmZgt0xqy51UzKZCQP7/P2d18EG2JVuS9R3e93vu6+oOCcb5VFKe6KxoCgCmRK4HAEAxCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHAoDwBwKA8AcCgPAHIOFiSeT0WgyuTf3HQB4zlRhbs+ihaOPVAYIk5nC3PSjFb23Rr4NAM8ZKcw4rcrB4MMo8WXwIv3suMmYACl+cT0AIzqMgYnCfE/WYF4XNoweL5K1mE/1/z17nyHFL64HYITvhRlG0fNdX9mGwkAInYHxvTDxxcYaS7JW86z+3l4KAxmUBsb3wvw8iZ78vvNLW1AYiKA1MAILk6zDUBgoozYwvhcm2UpaP3Q0jthKgjJ6A+N7YaYP6yfA3ERR9K7+v6cw8J/iwHhfmHiYFOXg/Dq9YCCe3H05jRqtwlAY+E9zYLwvzDS+Wj+D51WT6wYoDHynOjD+F2Y6vTsr9uXo2ocxAV3RHRgJhUncjS4HiTejZnmZUhh47hflgRFSmPZ8HBMwp70vFAZwSH9gKAzgTACBEViY+HLwhjPuoEAIgRFYGK5L8sGf2FcYgVFWGLP3v8GS6x9PDVzPQzvkFSb+Y/SVrSTjXP/46ed6DlsirzDN+DgmEVz9hDw1xMxo2wtjE2lKYVDC+q/gEJKyKpjAUBhssrMaL7wRewknMBQGG8wFRv66RzcCCgyFwToX20Bdfjv/hRQYCoN1XQaGrJQIKjAUBivqbiDV2d4hKqXCCoz3hfkxKfHN7Zg0q1cYutJeYIHxvTA/T8qeU8lVA0bUPhBNXNoLLTC+FyZ91gCFsaRRX2wMSKHgAuN7YbKHl/T+MljFtdXdqT6TjlWT7oUXGP8LkyamwXOq11GYHdbywraPSQEGRkBh0sQ0eEDSGgqzw0pg6ItRIQZGQmHiiyY7XtZQmDLzVmzviutRahNkYCQUJn1S9fHuV5WjMGW2FMb10PQKMzAiCjP9r5f/1OQpbEUUZtPT6sC4HppigQZGRmH24OOYXFukxMIF1JgJNTAUJjzzwNi4QwNmgg0MhQnKytYRhbEn3MBQmKBsFMb1gAIRcGAoTEBYgXEk5MBQmIDkR4uIi21BB4bChKK47kJgbAo7MBQmFGwdORJ4YChMGFiBcSX0wFCYEDwlLa4EHxgKE4KnBMYRAkNhVCuc/+J6KEEiMBRGNwrjFIGZUhjdlmfYuR5JiAhMisJoxhl2DhGYDIVRbHkOr+uRBIjA5CiMWstrkFyPJEQEZobCqEVhHCIwcxRGKW7R4BKBWaAwSrH+4hCBWaIwOnGU2iECU0BhdOIsO3cITBGF0YnCOENgVlAYlbKNJNeDCBOBWUVhVKIwrhCYNRRGJTaSHCEw6yiMShTGDQKzgcJoxEaSGwRmE4VR6CmFcYLAlKAwClEYJwhMGQqjz+x8XtfDCA2BKUVh9KEwLhCYchRGH27M6wCBqUBh9GEvjH0EpgqF0YdVGOsITCUKow4bSdYRmGoURh02kmwjMFtQGHUojGUEZhsKow6FsYvAbEVhtOGEXrsIzHYURhsKYxWB2YHCaENhbCIwu1AYbbhkwCICsxOF0YbC2ENgdqMwynC+nT0EpgYKowx7YawhMHVQGGUojC0EphYKowwbSZYQmHoojDIUxg4CU5Oswkwm9w3/RWiFYSPJDgJTl4DC/BiNvqYfH0+jRO+8UWQoDAwgMLV5X5j4Ku3K4W/Th36Ue9YkMRQG3SMw9XlfmOEsK3cnUXT04dezhomhMOgcgWnA98I8JEX56+QfUfQyit6mX/ierMq8czsmn1EY8whME74XJlmFOU4+jKP8Y/7H527H5DMOJRlHYBrxvDA/T6Lep2m25pJ9zP/45HeXY/IahTGNwDTjf2GynMw/rv7RzZi8xkaSYQSmIQqjC4Uxi8A05Xlh4ot8v266w3e2f/eh0cEkCoMOEZjGPC9Mul/3yW/Tx5P0nJhszSVZhZnv83U1Jp9RGJMITHO+FyYNSvQiycz/SRLzcRrfnkZNNpJCKwwHq00iMC34Xpjs/JdsE2l26l20OKjkbkz+ojAGEZg2vC/M9MfVy5dH1/PLB7ILCJyPyVsUxhwC04r/hVn68WUwOG/UFwqDrhCYdiQVpg0fx2QQhTGFwLREYVThlF5DCExbFEYVCmMGgWlNXmHiy8EbzrirQGCMIDDtySsMVw1sQWFMIDB70FWYaJOVMXmDwBhAYPYhrzDxH6OvbCVVoDDdIzB7kVeYZnwck0EUpnMEZj8URhUK0zUCsycKowqF6RiB2ZeQwsSTyWjU/HlsFAZ7ITB7k1CY27PloaGjj80qQ2HQHoHZn/+FuemvHn7uvXU/Jm9RmC4RmA54X5j0OSbRweDDKPFl8CKKGt3ijsKgNQLTBd8Lk96A6nVhw+jxotktqCgMWiIwnfC9MMON569tfmUbCoN2CEw3PC9MfLGxxpKs1fCsgQrcHaYzBKYjnhem5CIkrnysRmG6QmC6Iq8wPFW2GoXpCIHpjOeFSZ/ItnboaMwT2SpRmG4QmO54Xpj0CY+rJ8DcLJ/+WAeFQWMEpkO+FyZOH5N0cH6dXjAQT+6+nEaNVmEoDBojMF3yvTCLxyQtvWpy3UBYheEWdx0gMJ3yvjDT6d1ZsS/pw9ncj8lTFGZ/BKZbAgqTuBtdDhJvRs3yMg2wMK6HIB2B6ZiMwrTn45jMoTD7IjBdozCaUJg9EZjOURhNKMx+CEz3KIwmFGYvBMYACqMJhdkHgTGBwmhCYfZAYIygMJpQmPYIjBkURhMK0xqBMYTCaEJh2iIwplAYRbhooC0CYwyFUYTCtERgzKEwihCYdgiMQRRGEQrTCoExicIoQmHaIDBGURhFKEwLBMYsCqMIhWmOwBhGYRShMI0RGNMojCIUpikCYxyFUYTCNERgzKMwilCYZgiMBRRGEQrTCIGxgcIoQmGaIDBWUBhFKEwDBMYOCqMIhamPwFhCYRShMLURGFsojCIUpi4CYw2FUYTC1ERg7KEwilCYegiMRRRGEQpTC4GxicIoQmHqIDBWURhFKEwNBMYuCqMIhdmNwFhGYRShMDsRGNsojCIUZhcCYx2FUYTC7EBg7KMwilCY7QiMAxRGEQqzFYFxgcIoQmG2ITBOUBhFKMwWBMYNCqMIhalGYByhMIpQmEoExhUKowiFqUJgnLFcmPjrfYffsAYKAwLjkuXC/DyJjj52+C13ojAgMC7ZL0zi1XWH33U7CgMC45Lt/TCP7/tRFpnfOvzGW4RUmD8pTBkC45SDPb2zyPSsRIbChI7AuOXmWNLd+2xFpnf+rdE3mPxx3XRHcWCFcT0E/xAYx5wdrb7L12QO3u5sxt37//578iG+yqv01tyYhKMwmwiMa+7Oh4m/nM5WZLY2Jr6IoidJYR6zfcSpZ03WYyhM0AiMc44KE39+ka3B/K2/IxlpYNLCpAeheq9Gv75vmBgKEzIC456Lwszy0nud7oW5TRrzvPq149l2UfrxU/qF78nr33U/Jg0ozBoC4wHrhZnlZXlOzEO+FVTx6mQV5rjwcZq1psFKDIUJF4Hxge0z7i6yvBx+XDYi2f6pLsz8L5OP+SpMthJT/fo2Y1KDwqwgMF5wcE7v2jHq5EvV6ySFwsyzsrVIbcakBoUpIjB+sF6YjfPs4q+T6tcnW0fZukvycZ4V1mGqUJgCAuMJ3+/eMJztBx4v9u+Ot+4ZtjEmX1GYJQLjC9vrMGcvj5YrIFe799mmh45mu3rzNReOJVWiMAsExhv298MsN3Fq7VEZznYMP55GvbeTyVWf82GqUJg5AuMPi4WZJO6SqFxPZm62HadeyC8WiA76nNO7A4WZITAesVeYn4vT/gvq1OLutPgvdlxk0GxMulCYHIHxicV1mHFJYertUYlvL89epo7+uem9qyhMcAiMVywWJv7PweBv/aj3l8Hc383fIYbChIbA+MXlnl4bKExgCIxnbD9r4HLwxurTBihMWAiMb3w/425Ts0hRmKAQGO/IKwzXJVWhMATGP9YKk5/N+zM/JrRw1HynzLbClBytavz+cgVfGALjIXuFOZnfqq6oxW7f+I9RgwdHUphwEBgfyStMh2NSJvDCEBgvydsP04yPYzIk8MclERg/URg1wi4MgfGU7fNh/ne7s2HiyWQ0mkya/+OwCuN6CO4QGF/ZP6e3eI/eem7Pljtujhr+awoTBALjLQf36U0z0eBdb/qrO4ebPfSRwoSAwPjL9n6YH1d5MDZu11sluyL7YPBhlPgyyJ6EctzxmJQItzAExmMO9vQ+vp/d6OXb7tdmN818XdgweryIFs816XBMGgRbGALjMzfHkmZ7Vg52301quHHf782vdDMm8UItDIHxmquj1fHtaZ0z7uZPMylI1mp45mOJUA9WExi/OTwf5vFfdxem5CIkrnwsF2hhCIznnK3DfO7XWYcpyQlPZCuXBOap6zHYR2B856Qw8c2L/OSWnXfdTbaS1g8djRs9bYDCqEZgvOegMPkemJpn3j2snwBzU/v+4U3GpECIhSEw/rNdmNlRpNrPJImH2TGn6/SCgXhy9+W05iNQmoxJhwALQ2AEcHJOb+3T7RLx1fo9pV7xRLYy4RWGwEhgvzCNLhlI3Z0V+7J7303TMSkRXGEIjAi2r61ucHu6grvRZfp8pTejpg9kozBqERgZuD+MFoEVhsAIQWG0CKswBEYKec8a6HBMqgRVGAIjBncC1yKkwhAYOSiMFgEVhsAIwn4YLcIpDIGRhMJoEUxhCIwots+4Oyvu3L1qdAFAKxRGGwIji/1zepe7Xprd6aUdCqMMgRHGYmEmibskKteTmRv29HYojMIQGGnsFWb9MFKGraTOBFEYAiOOxXWYcUlhGtzpxciYFAmhMARGHouFif9zMPhbP+r9ZTD39wZ3cTAzJkUCKAyBEcjlnl4bKIweBEYi23dvuBy8Mb3rZQWFUYPAiMQZd1pof5gJgZGJwmihvDAERiju3qCF7sIQGKm4tloL1YUhMGJRGC00F4bAyMV+GC0UF4bACEZhtNBbGAIjGYXRQm1hCIxorgrzeBpFR+YvGqAw4hEY2awXJn6f7t393rdz4SOFkY7ACGe7MPFFdvxoGEW9F8n/PnX47VuPSQedhSEw0tkuzDiK/uk+XYVJOpNk5rjDb996TDqoLAyBEc92YYbZTaeSzjzPNpW4A1VnNBaGwMhn+9rqi3S1Jfn/9AP36e2SwsIQGAXs3x/mXfb/6R4YCtMlfYUhMBo4KcxDfrkAhemSusIQGBWcbCXlu2HS0LAfpjPaCkNgdLC/p7f36ftJdibMbG+MWRRGKAKjhO3CzE61S9Zd0suszd+zl8LIRGC0sH5O70OamNl+XvMn3FEYmQiMGvavS/rxeXCe7n35+T9ef+vwm1egMBIRGD24tloLRYUhMIpQGC30FIbAaEJhtFBTGAKjiv3CxLeDJeOPZ6Mw0hAYXawX5qbPncCNUFIYAqOMo/NhKEzndBSGwGhj/5zeqPfWwlHqOQojCoFRx/6VjxZunVlAYSQhMPrYL4z5KwWKKIwgBEYhCqOF/MIQGI1cXFvd4bfcicKIQWBUsl2Yh/zWMO3Ef4y+NjyBJpjC/Cm9MARGJ+vnwwyj6K9tT7NrsY1FYYQgMErZvsfd5SA9Iebg5cxRo2BQmGpJYJ66HsMeCIxWDo5WNznjLtkuKvi1H/X+nnxssKkUUmFcD2EPBEYtzwuz/vrGZwJTGAkIjF6eX1tNYeqSXBgCo5jnhcluF55tGbGVtJ3gwhAYzXwvTHYxdu9j/kf29FaTWxgCo5qTwuTntdS9/vHxNIpeZ2stFKaa2MIQGN0cFObmRbYr5efJ4W/1/kH8X1F0mJ4JTGGqSS0MgVHOemHSHSuzwtS/gOD7aXaeHoWpJrQwBEY7F+f09l79evLk9/iqwUGh9MWHv1GYajILQ2DUc3BdUrLm8vMkLcWwyVNl0x2+/4vCVBJZGAKjn4N73B1PZ4V5yJ4uW9fjRZvbblIYjxGYANi+Luli9kTZtBRNN3r+0acwlQQWhsCEwM0dqNoVZvp42fjxJxTGWwQmCKIKY2ZMOogrDIEJg/2tpPRO4G32wxgbkw7SCkNgAmF7T+84q0pWmLQ29Y8lLcSNNpUojJ8ITChsFya9WPrZb2lh4mG7B7I127aiMF4iMMGwfsbdQ3rM+UUUvUw/tnl00rbClNzpocV3EElUYQhMOOxfl7R8rmzvbZvv0ux24BTGQwQmIA6ufIxvz9LIvDw3vZc3RWH8Q2BC4v/9Yfbj45iMkFMYAhMUCqOEmMIQmLC4Kszd6GuTt44nk9FoMmm+XUVhPENgAmO1MI/vZ89Husn29r6uGYzbs+WhoaOPzSoTSmGeCikMgQmNzcKM5yfAjGe5OKxzXstNP1rR7AgUhfEKgQmOxcKM5zdf+N6Peuejz/1aj7DOanQw+JA+a+DLIL0BZ6MTgSmMTwhMeOwVJj2bN2/DMD/VLg3NzttopmfPFLem0rvE1L755s4x6SGiMAQmQPYKM56vsiSpyS94rHOPu+HGis7mV9qPSQ8JhSEwIbJXmOH8IoFkteR4/odd11bP7lhVVONf1R6THgIKQ2CCZK0wy1aM56mpcQ1jyUu48rGM/4UhMGGyVphlGIbzP7QrTLIOQ2E2/Ol7YQhMoOwXJlmZmW3l1ChMyT1kxo3uW0Vh/EBgQmW/MMk6yGxPbZ09Kg/rJ8DcNLvpQ0CFcT2EbQhMsOzvh1nshlkeXdr2z4bp6TDn1+kFA/Hk7stp1OzWmxTGBwQmXNaPVielWe6GqXHyXPq0x1Wvmlw3QGE8QGACZq8w6blzbwsrLrXvonl3VuzL0XWHY9LD58IQmJBZvmpg8djG+Pa0wQ6Vu9HlIPFm1Cwvu8ekhseFITBBs3nlY769k+2NSbeQWj1poOsxaeFvYQhM2CzfveHly/Nv6Z/Swhx+7PB7V6EwjhGYwDm6A1V8+eFbh9+5GoVxi8CEjrto6uBpYQhM8CiMDn4WhsCAwujgZWEIDCiMEj4WhsCAwmjhYWEIDKYURgv/CkNgkKIwOnhXGAKDDIXRwbfCEBjkKIwOnhWGwGCGwujgV2EIDOYojA5eFYbAYIHC6OBTYQgMliiMDh4VhsCggMLo4E9hCAyKKIwO3hSGwGAFhdHBl8IQGKyiMDp4UhgCgzUURgc/CkNgsI7C6OBFYQgMNlAYHXwoDIHBJgqjgweFITAoQWF0cF8YAoMyFEYH54UhMChFYXRwXRgCg3IURgfHhSEwqEBhdHBbGAKDKhRGB6eFITCoRGF0cFkYAoNqFEYHh4UhMFZEUnX536DD9+qKj2MywV1hCIwdUpdkCqODs8IQGEukLskURgdXhSEwtkhdkimMDo4KQ2CskbokUxgd3BSGwNgjdUmmMDo4KQyBsUjqkkxhdHBRGAJjk9QlmcLo4KAwBMYqqUsyhdHBfmEIjF1Sl2QKo4P1whAYy6QuyRRGB9uFITC2SV2SKYwOlgtDYKyTuiRTGB3sFobA2Cd1SaYwOlgtDIFxQOqSTGF0sFkYAuOC1CWZwuhgsTAExgmpS7KAwjz+29nLN9eLT3+eRE9+r/2Ppc6XpuwVhsC4IXVJ9r4w8VV+p6zDT7MvUJgy1gpDYByRuiR7X5jh4m58x/kXKEwZW4UhMK5IXZJ9L8xDkpbX99P4c3+eGApTxlJhCIwzUpdk3wuTrMI8z/7weDJLDIUpY6cwBMYdqUuy54WJL6LebAdMUpbo3ZTClLNSGALjkNQl2fPCFHPyvZ/VhsKUsVEYAuOS1CVZUGHSxCSfUJgyFgpDYJySuiR7XpjCVtI02+377J7ClDFfGALjltQl2fPCpHt6j1c+e/7/KEwJ44UhMI5JXZJ9L0yyZRS9XX6aJOagT2E2mS4MgXFN6pLse2GyM+6WRYmzE/AozAbDhSEwzkldkr0vzHS8WpR/9ClMCbOFITDuSV2S/S/MNP78P4tF+XFFYTYZLQyB8YDUJVlAYfbi45hMMFkYAuMDqUsyhdHBYGEIjBekLskURgdzhSEwfpC6JMsrTHw5eHNf+9VS50tTxgpDYDwhdUmWVxjO6S1jqjAExhdSl2RdhYk2WRmTe4YKQ2C8IXVJlleY+I/RV7aS1pkpDIHxh90leVz4JX1w9HH21eHKL+/ntd5JXmGa8XFMJhgpDIHxiLvCpHfJzrcaKMwmH8dkgonCEBifOC1M9CzbbKAwm3wckwkGCkNgvGK7MMu7pty9j/LbSyaFaXCQZUZIYeLJZDSaTOrvf5mjMG0RGL+4K0y2RpOtsGgtzO3Zcs3s6GOzylCYlgiMZ1wW5ns/30zSWZib/uoWYe/t7n9jekz+6bowBMY3FMbQf4Nsl9PB4MMo8WXwovBoNndj8lDHhSEw3nFZmKHiraT0HnevCxtGjxfRyrTvQmHaIDD+2bIkP21n23crFCa+PdW8p3e4cVBs8yvbUJgWCIyHqpfkloHZmpj1o9X5j1zxaPWzmjtEPS/M6rMGMvNtwnooTHMExke212FWzDYjFBam5CIkrnws8bTDwhAYL7k746736rfZV8MozHeeNbCpw8IQGD+52dP7eBr1zhctUbgfJtlKWj90NK6fzymFaYzAeMrRsaT0J3Dx86awMOljHldPgLmZ79euh8I0Q2B85epodbIZsTi0orEw2QOSDs6v0wsG4sndl9MGW4CmxuShrgpDYLzl7HyY9ISR2e90jYWZxldrx82iV02uG6AwTRAYf7k74275xDKVhZlO786KfTm69mFMvummMATGY+4Kk+6KmZ8Po7IwibvR5SDxZtQsL1MK0wSB8ZnDqwYW20l6C9Oej2MyoIvCEBivOb4uKUsLhdnk45gM6KAwBMZvLgszP55EYTb5OCYD9i8MgfGcy8JkJ418ojBlfByTAXsXhsD4TuqSTGFU2LcwBMZ7UpdkCqPCnoUhMP6TuiRTGBX2KwyBEUDqkkxhVNirMARGAqlLMoVRYZ/CEBgRpC7JFEaFPQpDYGSQuiRTGBXaF4bACCF1SaYwKrQuDIGRQuqSTGFUaFsYAiOG1CWZwqjQsjAERg6pSzKFUaFdYQiMIFKXZAqjQqvCEBhJpC7JFEaFNoUhMKJIXZIpjAotCkNgZJG6JFMYFZoXhsAII3VJpjAqNC4MgZFG6pJMYVRoWhgCI47UJZnCqNCwMARGHqlLMoVRoVlhCIxAUpdkCqNCo8IQGImkLskURoUmhSEwIkldkimMCg0KQ2BkkrokUxgV/qxdGAIjlNQlmcKoULswBEYqqUsyhVGBwKhndUkeRtHx4pOH/JGymfjzWT+Kopfn3+ZfGUdzB6+uS96KwqhQszAERi6rS/LPk+VTZZM/z58lG79f5CR6fZ9/bVmYwhcLKIwK9QpDYASzuyQn6y3PZrVI1mfe5X/63i/WZPb3K4VZruwsUBgVahWGwEhmeUlebCctt5GSlZkoOvqYhCW+S1dm8r8fL9Z2JlfRcs1ngcKoUKcwBEY0y0tysr6S1aKwjZREp/dx/e8LhcnWZ47X3ofC6FCjMARGNttL8jjfDlrZRiquocxrUixM8hIKo9PuwhAY4WwvyfFFmpDxctfKcHUFJVm5eZ7uiaEwQdhZGAIjnfUlOV1n+ff+YhupeHgpM5nv6S1uJbEfRqldhSEw4m1Zkv9sZ9d3zI8SzbaR0uA82zwWXazKj6uS3TAURocdywuBka96SW4ZmJ2JSbeTloefH8oORU9Xj1b3/qXJuJvz8afZxzEZsH1xITAK2F+HSaOy3Op5KFtBma6dD/OKM+6U2rq8EBgN7C/Jq+swyyPR2dezVZZP0/Uz7uZ7bZYojArbCkNgVLC/JA9X9sMst5LWC7PYD3N7WrIlRWFU2FIYAqOD9SU5ScqTX5fHkpZ7eqsKU3K8aUphlKguDIFRwvaSnF4j8C5dj1leM7C6CTTeLEzh/LwFCqNCZWEIjBa2l+S8LXln5l9Y2dVbVpgxhVGqqjAERg3LS/J4ttf2YbH39mHtukbWYTI+jsmAisIQGD3sLsmLi5DSnS6z7aT0yse3i1c8nm4W5nt/82AShVGhvDAERhGrS3J+UVImvSlMvl6S3b3h8GN6d7vJ5xebe3rjm77cY0nxZDIaTSZlZy1vF3JhCIwmVpfk8fIGVIvtpWy1pehwdveGIpnXJd2eLacguwGOB2PyTFlhCIwqNpfklV0uhe2k+PPyLne985J73G0GRkBhblZu3beyKehsTN4pKQyB0cXikpxuDhUOGy23k5LG3GZ3Ai/c9HtZmF7pr3/vC5NNwMHgwyjxZZBu/ZVfHmFzTP7ZLAyBUUbqkux7YdJ+Fm9g/nhRuipWSep8aWijMARGG6lLsu+FGW7snd78yjZS50tD64UhMOpIXZI9L0x8sbHGUnUnnHJS50tDa4UhMPpIXZI9L8zGxRClX9pC6nxpaLUwBEYhqUuyvMKUnTdYTep8aWilMARGI6lLsueFKZxbOFc8GWg3qfOloWJhCIxKUpdkzwuTnfuzcgLMTbR5cdUWUudLQ4XCEBidpC7JvhcmTm+0dXB+nV4wEE/uvqTnLTdYhRE7XxpaFobAKCV1Sfa9MNP4KlpTcrdhy2Pyzy+80oAAAAnoSURBVKIwBEYrqUuy94WZTu/Oin05ut79L8yPyTfzwhAYtaQuyQIKk7gbXQ4Sb0bN8jKVO18amhWGwOgldUmWUZj2fByTAXlhCIxiUpdkCqNCVhgCo5nUJZnCqJAWhsCoJnVJlleY+HLwhjPu1iSFITC6SV2S5RWG65JK1HkKMUSTuiTrKsz6qTMJK2NyjsKoJ3VJlleY+I/RV7aS1vxCYLSTuiTLK0wzPo6pe+yD0U/qkkxhFCAwAZC6JFMY+QhMCKQuyUIKwxPZqhGYIEhdkiUUhieybUNgwiB1Sfa/MDyRbZtfCEwgpC7J3heGJ7JtQ1+CIXVJ9r0wPJFtGwITDqlLsu+F4YlsWxCYgEhdkj0vDE9k24LAhETqkux5YXgiWzUCExSpS7K8wvBEthyBCYvUJdnzwvBEtioEJjBSl2TPC8MT2SoQmNBIXZJ9LwxPZCtFYIIjdUn2vTB7P5FNpV9cDwCoq8MY+PhEtjVSfxHsxIRJw4T59Nbtn8i2htkqDRMmjcjCdEbAENthwqRhwrx6664IGGI7TJg0TJhXb90VAUNshwmThgnz6q27ImCI7TBh0jBhXr11VwQMsR0mTBomzKu37oqAIbbDhEnDhHn11l0RMMR2mDBpmDCv3rorAobYDhMmDRPm1Vt3RcAQ22HCpGHCvHrrrggYYjtMmDRMmFdv3RUBQ2yHCZOGCfPqrbsiYIjtMGHSMGFevXVXBAyxHSZMGibMq7fuioAhtsOEScOEefXWXREwxHaYMGmYMK/euisChtgOEyYNE+bVWwMIHoUBYA6FAWAOhQFgDoUBYA6FAWAOhQFgDoUBYA6FAWAOhQFgDoUBYA6FAWAOhQFgDoUBYA6FAWAOhQFgDoUBYA6FAWAOhQFgDoUBYA6FAWAOhQFgDoUBYA6FAWAOhQFgjqeFGUbv1r/08ySaO3YxpG6UTNh0enuWTNTRR/uj6UjF+OXPscoZI32OZezMNj8L8xBt/iA+RNKX12n5hMVXs8l6fe9iSHurHL/0OVY5YdLnWMbWbPOyMA/9kh/EsfDlNVU6YcPFdD13Maa9VY5f+hyrnDDpcyxja7b5WJhsEkt+EJ/87mI0HSqdsO9Jdf56n/1K6X1yMqz9VI9f+ByrnDDpcyxjbbb5V5jHi6jsBzG+kPwLI1UxYcP5r4qxzF+JleOXPscqJ0z6HMtYm22+FSbbOjz8vPmD+PNE5qr2XNWEJdP1LN8QTmatwN/51eMXPscqJ0z6HMvYm23eFeYi6p3fl+wQfRC8RpqqmrBkbXU+Q8cSJ7F6/MLnWOWESZ9jGXuzzbvC/Gu6a7ukMOPoyf/9/CKKDs5l7r+vmrDCV8oONHmvevzC51jlhEmfYxl7s823wuRK5twwOniR7+A+FPprI7U5YYXfIIXfK3JUj1/4HKucMOlzLGNvtkkpTHyxPIYmddt3GlRhpM+xQAvT+WyTUpjkP0Pv/FvyH+CmL3gHfkiFkT7HAi1M57NNSmGWHk/E7l4LqjBLMudYoIVZ6mi2yStMegBf6GwNtDAy51jwhelotgksjNzZGmphdE2Y3Dk2v6YxGb+92UZhrArpaPWSyDmm8Gh1oTD2ZhuFsSqkM+5KXyOHwjPuCoWxN9ukFKbwn2Es6xfHis0Jk34OeuX4pc+xQK8a6Hy2SSlM8pXZf5GkrFJna8WphLKvo6sav/g5FuaVj53PNimFSU8EOrxOPn7uSzwwMVdSmPQy+teC7wVQNX7xc6xyxkifYxlrs837wswPmRXuvPVM5HUumZIJE38/o/Xxq5ljVRMmfo5lbM02MYXJ7g+XeSVycc2VTZj0ezKuj1/NHKucMOlzLGNrtskpTLLell6RdXTtbFQdKJ0w8feVXh2/ojlWNWHi51jGzmzzszAAdKAwAMyhMADMoTAAzKEwAMyhMADMoTAAzKEwAMyhMADMoTAAzKEwAMyhMADMoTAAzKEwAMyhMADMoTAAzKEwAMyhMADMoTAAzKEwAMyhMADMoTAAzKEwAMyhMADMoTAAzKEwAMyhMADMoTAAzKEwAMyhMADMoTAAzKEwAMyhMNj04/PLKIp6Rx/u2/37+CJ68nv2h8/95H3ezj8tf9H0R8tvAwEoDNbFV9Fc71/avcM8HsPsXbYXJr4q+UtoQWGwbhgVHLd5h3k8vvezTP3HtsLEpX8JLSgM1jwkUXh1nfwhvnuf5OHTfm/1fNcWEIXRjcJgzbCw4jJOErHHWyWFebfrNRRGNwqDVSs/8T9Pomd77IalMKAwWFX2E5+E5vn0Md1mevXb/GuP7/tRdHB+v/r528J7zPfnvFu+ZeWLjgst+97f3SVIQWGwZry5ezctTL7XNuq9Xbwq//zd6ufZfpeqwlS/6Dj5w3yXz5iVGkUoDNYkOYkOP96vfem/XcyPLmVJmbdiviv4YeXgU0VhtrzoOP3LPGzJ1/fZ9wO/UBismx1jPvrwbf6VNDrRYbKBdHcaZRsz6UvSDabHi/zz9AXp5zf9lSPQs/0ws0/LX7Q4LeZitplUZ+cNxKAw2JDuccnNdrukbch//JMOpD//y2NMw+zzh/nn4+zT8sKUv6iwCZWvDg3ZSNKEwqDMH5cvCif1JoWZ7yTJNmYKe4OTtZnjZR1mygtT/qLFe+XvlO9VhhoUBlXu/q0/2+1SONCTBaBQgXyvydp6R3lhyl+0vIYp30xiI0kXCoMtZrtMVovy7D7bL7Pw7H6xD2X5os3CVLxouT70kK3jsJGkC4XBquHKtky+ZbNemNmR644Lk3yXYzaStKEwWDVe2UrJG1H4sV/fSsp1sZWUvuDZPRtJylAYrErWTwqrGuN5YeYVWN/Tm1us+OTtqSpM2YsK75VuJrGRpAyFwar0ePTigujvi/0w0ev53+Y7S+bn/SaveF44EJ2fN7fjaPXKiwqFSb7NXy/a3S8CvqIwWJOeeds7T8+2S+/ekEUh27Obnhtzu3bGXXzTn++oST+ff7r1jLv1FxV2/Iyjg/5et4uAdygM1o1Xd+NOZ4VZuUqg8JpsvaTsgoD1wlS8aDj/Qh6ufa7lhn8oDDbcLA8Vvcp+3tPzYWZfPFxcnjjz+n7l82xjqqIwlS+abz6lW2hsJOlCYbApvj1Le3Lwz7N7NWRn3D2ebt6toXd0vfL54cf831cUpvRF038s11zG+91TD/6hMNhtzxtRefd9YA+FwW62fvIf2EhSh8JgN0uFue1zMow6FAa72SjMQ7Q8pgQ9KAx2s1GY7Fon9sKoQ2Gwm43C/DxdHPmGIhQGgDkUBoA5FAaAORQGgDkUBoA5FAaAORQGgDkUBoA5FAaAORQGgDkUBoA5FAaAORQGgDkUBoA5FAaAORQGgDkUBoA5FAaAORQGgDkUBoA5FAaAORQGgDn/H6Lp+PLrkjRuAAAAAElFTkSuQmCC" /></p>
 <!-- rnb-plot-end -->
 <!-- rnb-chunk-end -->
 </div>
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkZyYXVkX2RldGVjdGlvbiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCk5vdGVib29rIG7DoHkgbcO0IHThuqMgcXV5IHRyw6xuaCBwaMOibiB0w61jaCB2w6AgZOG7sSBiw6FvIGdpYW4gbOG6rW4gZOG7sWEgdHLDqm4gYuG7mSBk4buvIGxp4buHdSBjaMawYSBnw6FuIG5ow6NuLiBO4buZaSBkdW5nIGNow61uaCBiYW8gZ+G7k206DQoNCi0gICBEYXRhIHByb2Nlc3NpbmcgYW5kIGNsZWFuaW5nDQoNCi0gICBFeHBsb3JhdG9yeSBkYXRhIGFuYWx5c2lzIChFREEpDQoNCi0gICBEZXRlY3Rpb24gbW9kZWxzDQoNCiMgMS4gRGF0YSBwcm9jZXNzaW5nIGFuZCBjbGVhbmluZw0KDQojIyAxLjEuIEltcG9ydCBkYXRkYXRhDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpmcmF1ZF9kZiA8LSByZWFkX2NzdigiQzovVXNlcnMvYWRtaW4vT25lRHJpdmUgLSBUSFBUIEzDqiBI4buTbmcgUGhvbmcvUG9ydGZvbGlvL2RhdGEvYmFua2luZ190cmFuc2FjdGlvbnMuY3N2IikNCmhlYWQoZnJhdWRfZGYpDQpgYGANCg0KT3ZlcnZpZXcgduG7gSBi4buZIGThu68gbGnhu4d1DQoNCmBgYHtyfQ0Kc3RyKGZyYXVkX2RmKQ0KYGBgDQoNCiMjIDEuMi4gQ2xlYW5pbmcgZGF0YQ0KDQojIyMgMS4yLjEuIE1pc3NpbmcgdmFsdWUNCg0KYGBge3J9DQpzYXBwbHkoZnJhdWRfZGYsIGZ1bmN0aW9uKHgpIHN1bShpcy5uYSh4KSkpDQpgYGANCg0KIyMjIDEuMi4yLiBEdXBsaWNhdGUgZGF0YQ0KDQpgYGB7cn0NCnN1bShkdXBsaWNhdGVkKGZyYXVkX2RmKSkNCmBgYA0KDQojIyMgMS4yLjMuIEJp4bq/biDEkeG7lWkgZOG7ryBsaeG7h3Ugc+G7rSBk4bulbmcgxJHhu4MgcGjDom4gdMOtY2gNCg0KYGBge3J9DQpFREFfZGYgPC0gZnJhdWRfZGYgJT4lDQogIG11dGF0ZSgNCiAgICANCiAgICAjIFJpc2sgdGllcg0KICAgIHJpc2tfdGllciA9IGN1dCgNCiAgICAgIGFub21hbHlfc2NvcmUsDQogICAgICBicmVha3MgPSBjKDAsIDAuMywgMC42LCAwLjgsIDEpLA0KICAgICAgbGFiZWxzID0gYygiTG93IiwgIk1lZGl1bSIsICJIaWdoIiwgIkNyaXRpY2FsIiksDQogICAgICBpbmNsdWRlLmxvd2VzdCA9IFRSVUUNCiAgICApLA0KICAgIA0KICAgICMgVGltZSBvZiBkYXkNCiAgICB0aW1lX29mX2RheSA9IGNhc2Vfd2hlbigNCiAgICAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA+PSAwICAmIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA8IDYgIH4gIk5pZ2h0IiwNCiAgICAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA+PSA2ICAmIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA8IDEyIH4gIk1vcm5pbmciLA0KICAgICAgdHJhbnNhY3Rpb25fdGltZV9ob3VyID49IDEyICYgdHJhbnNhY3Rpb25fdGltZV9ob3VyIDwgMTggfiAiQWZ0ZXJub29uIiwNCiAgICAgIFRSVUUgfiAiRXZlbmluZyINCiAgICApLA0KICAgIA0KICAgICMgQ29tcG9zaXRlIGhpZ2gtcmlzayBmbGFnDQogICAgaGlnaF9yaXNrX2NvbWJvID0gaWZfZWxzZSgNCiAgICAgIHN1c3BpY2lvdXNfaXBfZmxhZyA9PSAxICYNCiAgICAgIGludGVybmF0aW9uYWxfdHJhbnNhY3Rpb25fZmxhZyA9PSAxICYNCiAgICAgIGFub21hbHlfc2NvcmUgPiAwLjcsDQogICAgICAxTCwNCiAgICAgIDBMDQogICAgKSwNCiAgICANCiAgICAjIEFjY291bnQgbWF0dXJpdHkNCiAgICBhY2NvdW50X21hdHVyaXR5ID0gY3V0KA0KICAgICAgYWNjb3VudF9hZ2VfZGF5cywNCiAgICAgIGJyZWFrcyA9IGMoMCwgMzY1LCA3MzAsIDE4MjUsIDM2NTAsIEluZiksDQogICAgICBsYWJlbHMgPSBjKCI8MSB5ciIsICIxLTIgeXIiLCAiMi01IHlyIiwgIjUtMTAgeXIiLCAiPjEwIHlyIiksDQogICAgICBpbmNsdWRlLmxvd2VzdCA9IFRSVUUNCiAgICApLA0KICAgIA0KICAgICMgQW1vdW50IHRpZXINCiAgICBhbW91bnRfdGllciA9IGN1dCgNCiAgICAgIHRyYW5zYWN0aW9uX2Ftb3VudCwNCiAgICAgIGJyZWFrcyA9IGMoMCwgNTAwMCwgMTAwMDAsIDE1MDAwLCAyMDAwMCwgSW5mKSwNCiAgICAgIGxhYmVscyA9IGMoIjw1SyIsICI1LTEwSyIsICIxMC0xNUsiLCAiMTUtMjBLIiwgIj4yMEsiKSwNCiAgICAgIGluY2x1ZGUubG93ZXN0ID0gVFJVRQ0KICAgICkNCiAgICANCiAgKQ0KYGBgDQoNCiMgMi4gRURBDQoNCiMjIDIuMS4gRGF0YSBhZ2dyZWdhdGlvbg0KDQoqKlTDrW5oIHPhu5EgbMaw4bujbmcgdsOgICUgZ2lhbyBk4buLY2ggZnJhdWQgdHLDqm4gY8OhYyBrw6puaCBnaWFvIGThu4tjaCAocGF5bWVudCBjaGFubmVsKSoqDQoNCmBgYHtyfQ0KRURBX2RmJT4lDQogIGdyb3VwX2J5KHBheW1lbnRfY2hhbm5lbCkgJT4lDQogIHN1bW1hcmlzZSgNCiAgICBmcmF1ZF9yYXRlID0gcm91bmQobWVhbihmcmF1ZF9mbGFnKSoxMDAsMiksDQogICAgY291bnQgPSBuKCkNCiAgKQ0KYGBgDQoNCioqVMOtbmggc+G7kSBsxrDhu6NuZyB2w6AgJSBnaWFvIGThu4tjaCBmcmF1ZCB0csOqbiBjw6FjIGtp4buDdSB4w6FjIHRo4buxYyAoYXV0aGVudGljYXRpb24gdHlwZSkqKg0KDQpgYGB7cn0NCkVEQV9kZiU+JQ0KICBncm91cF9ieShhdXRoZW50aWNhdGlvbl90eXBlKSAlPiUNCiAgc3VtbWFyaXNlKA0KICAgIGZyYXVkX3JhdGUgPSByb3VuZChtZWFuKGZyYXVkX2ZsYWcpKjEwMCwyKSwNCiAgICBjb3VudCA9IG4oKQ0KICApDQpgYGANCg0KKipDw6FjIHRo4budaSDEkWnhu4NtIGhheSB44bqjeSByYSBjw6FjIGdpYW8gZOG7i2NoIGdpYW4gbOG6rW46KioNCg0KYGBge3J9DQpFREFfZGYlPiUNCiAgZ3JvdXBfYnkodHJhbnNhY3Rpb25fdGltZV9ob3VyKSAlPiUNCiAgc3VtbWFyaXNlKA0KICAgIGZyYXVkX3JhdGUgPSByb3VuZChtZWFuKGZyYXVkX2ZsYWcpLDQpLA0KICAgIHZvbHVtZSA9IG4oKQ0KICApJT4lDQogIGFycmFuZ2UoZGVzYyhmcmF1ZF9yYXRlKSklPiUNCiAgc2xpY2VfaGVhZChuID0gNSkNCmBgYA0KDQoqKkPDoWMgZ2lhbyBk4buLY2ggZ2lhbiBs4bqtbiB44bqjeSByYSDhu58gY8OhYyB0w6BpIGtob+G6o24gbeG7nyB04burIDEgLSAyIG7Eg206KioNCg0KYGBge3J9DQpFREFfZGYlPiUNCiAgZ3JvdXBfYnkoYWNjb3VudF9tYXR1cml0eSkgJT4lDQogIHN1bW1hcmlzZSgNCiAgICBmcmF1ZF9yYXRlID0gcm91bmQobWVhbihmcmF1ZF9mbGFnKSw0KSwNCiAgICBjb3VudCA9IG4oKSkNCmBgYA0KDQojIyAyLjIuIFZpc3VhbGl6YXRpb24NCg0KIyMjIDIuMi4xLiBQaMOibiBwaOG7kWkgY+G7p2EgYW5vbWFseV9zY29yZQ0KDQpgYGB7cn0NCmdncGxvdCgNCiAgZnJhdWRfZGYsDQogIGFlcygNCiAgICB4ID0gYW5vbWFseV9zY29yZSwNCiAgICBmaWxsID0gZnJhdWRfZmxhZywNCiAgICBjb2xvciA9IGZyYXVkX2ZsYWcNCiAgKQ0KKSArDQoNCiAgZ2VvbV9kZW5zaXR5KA0KICAgIGFscGhhID0gMC4zDQogICkgKw0KDQogIGdlb21fdmxpbmUoDQogICAgeGludGVyY2VwdCA9IDAuNywNCiAgICBjb2xvciA9ICJyZWQiLA0KICAgIGxpbmV0eXBlID0gImRhc2hlZCIsDQogICAgbGluZXdpZHRoID0gMQ0KICApICsNCg0KDQogIGxhYnMoDQogICAgdGl0bGUgPSAiRGlzdHJpYnV0aW9uIG9mIEFub21hbHkgU2NvcmVzIiwNCiAgICBzdWJ0aXRsZSA9ICJGcmF1ZHVsZW50IHRyYW5zYWN0aW9ucyB0ZW5kIHRvIGV4aGliaXQgaGlnaGVyIGFub21hbHkgc2NvcmVzIiwNCiAgICB4ID0gIkFub21hbHkgU2NvcmUiLA0KICAgIHkgPSAiRGVuc2l0eSINCiAgKSArDQoNCiAgdGhlbWVfbWluaW1hbChiYXNlX3NpemUgPSAxMykNCmBgYA0KDQojIyMgMi4yLjIuIFJpc2sgaGVhdG1hcCB0aGVvIGdp4budIGdpYW8gZOG7i2NoDQoNCmBgYHtyfQ0KaG91cmx5X2RhdGEgPC0gRURBX2RmICU+JQ0KICBncm91cF9ieSh0cmFuc2FjdGlvbl90aW1lX2hvdXIpICU+JQ0KICBzdW1tYXJpc2UoDQogICAgZnJhdWRfcmF0ZSA9IHJvdW5kKG1lYW4oZnJhdWRfZmxhZykgKiAxMDAsIDQpDQogICkgJT4lDQogIGFycmFuZ2UodHJhbnNhY3Rpb25fdGltZV9ob3VyKSU+JQ0KICBtdXRhdGUoDQogICAgcGVyaW9kID0gaWZlbHNlKA0KICAgICAgdHJhbnNhY3Rpb25fdGltZV9ob3VyIDwgMTIsDQogICAgICAiQU0iLA0KICAgICAgIlBNIg0KICAgICksDQoNCiAgICBob3VyXzEyID0gY2FzZV93aGVuKA0KICAgICAgdHJhbnNhY3Rpb25fdGltZV9ob3VyID09IDAgfiAxMiwNCiAgICAgIHRyYW5zYWN0aW9uX3RpbWVfaG91ciA9PSAxMiB+IDEyLA0KICAgICAgVFJVRSB+IHRyYW5zYWN0aW9uX3RpbWVfaG91ciAlJSAxMg0KICAgICkNCiAgKQ0KDQoNCmdncGxvdCgNCiAgaG91cmx5X2RhdGEsDQogIGFlcygNCiAgICB4ID0gZmFjdG9yKGhvdXJfMTIsDQogICAgICAgICAgICAgICBsZXZlbHMgPSBjKDEyLDEsMiwzLDQsNSw2LDcsOCw5LDEwLDExKSksDQogICAgeSA9IHBlcmlvZCwNCiAgICBmaWxsID0gZnJhdWRfcmF0ZQ0KICApDQopICsNCg0KICBnZW9tX3RpbGUoDQogICAgY29sb3IgPSAid2hpdGUiLA0KICAgIGxpbmV3aWR0aCA9IDAuNw0KICApICsNCg0KICBnZW9tX3RleHQoDQogICAgYWVzKA0KICAgICAgbGFiZWwgPSBzcHJpbnRmKCIlLjFmJSUiLCBmcmF1ZF9yYXRlKSwNCiAgICAgIGNvbG9yID0gZnJhdWRfcmF0ZSA+IG1lZGlhbihmcmF1ZF9yYXRlKQ0KICAgICksDQogICAgc2l6ZSA9IDIsDQogICAgZm9udGZhY2UgPSAiYm9sZCINCiAgKSArDQoNCiAgc2NhbGVfZmlsbF9ncmFkaWVudG4oDQogICAgY29sb3VycyA9IGMoDQogICAgICAiI0Q0RjFGNCIsDQogICAgICAiI0Y0QTI2MSIsDQogICAgICAiI0U2Mzk0NiINCiAgICApLA0KICAgIG5hbWUgPSAiRnJhdWQgUmF0ZSAlIg0KICApICsNCg0KICBzY2FsZV9jb2xvcl9tYW51YWwoDQogICAgdmFsdWVzID0gYygNCiAgICAgICJUUlVFIiA9ICJ3aGl0ZSIsDQogICAgICAiRkFMU0UiID0gIiMzMzMzMzMiDQogICAgKSwNCiAgICBndWlkZSA9ICJub25lIg0KICApICsNCg0KICBsYWJzKA0KICAgIHRpdGxlID0gIkZyYXVkIFJhdGUgKCUpIGJ5IEhvdXIgb2YgRGF5IiwNCiAgICBzdWJ0aXRsZSA9ICJBTSB2cyBQTSBDb21wYXJpc29uIiwNCiAgICB4ID0gTlVMTCwNCiAgICB5ID0gTlVMTA0KICApICsNCg0KICB0aGVtZV9taW5pbWFsKGJhc2Vfc2l6ZSA9IDEyKSArDQoNCiAgdGhlbWUoDQogICAgcGFuZWwuZ3JpZCA9IGVsZW1lbnRfYmxhbmsoKSwNCg0KICAgIGF4aXMudGV4dC54ID0gZWxlbWVudF90ZXh0KA0KICAgICAgc2l6ZSA9IDExLA0KICAgICAgZmFjZSA9ICJib2xkIg0KICAgICksDQoNCiAgICBheGlzLnRleHQueSA9IGVsZW1lbnRfdGV4dCgNCiAgICAgIHNpemUgPSAxMiwNCiAgICAgIGZhY2UgPSAiYm9sZCINCiAgICApLA0KDQogICAgcGxvdC50aXRsZSA9IGVsZW1lbnRfdGV4dCgNCiAgICAgIHNpemUgPSAxNiwNCiAgICAgIGZhY2UgPSAiYm9sZCIsDQogICAgICBoanVzdCA9IDAuNQ0KICAgICksDQoNCiAgICBwbG90LnN1YnRpdGxlID0gZWxlbWVudF90ZXh0KA0KICAgICAgaGp1c3QgPSAwLjUNCiAgICApDQogICkNCmBgYA0KDQojIDMuIERldGVjdGlvbiBtb2RlbHMNCg0KIyMgMy4xLiBVbnN1cGVydmlzZWQgbGVhcm5pbmcNCg0KVHLGsOG7m2MgaOG6v3QgY+G6p24geOG7rSBsw70gZOG7ryBsaeG7h3UgxJHhu4MgY2jhuqF5IHRodeG6rXQgdG/DoW4NCg0KYGBge3J9DQpsaWJyYXJ5KGZhc3REdW1taWVzKQ0KDQp1bnN1cF9kZiA8LSBmcmF1ZF9kZiAlPiUNCiAgc2VsZWN0KC10cmFuc2FjdGlvbl9pZCwgLWZyYXVkX2ZsYWcpDQoNCnVuc3VwX2RmIDwtIGR1bW15X2NvbHMoDQogIHVuc3VwX2RmLA0KICBzZWxlY3RfY29sdW1ucyA9IGMoDQogICAgInBheW1lbnRfY2hhbm5lbCIsDQogICAgImF1dGhlbnRpY2F0aW9uX3R5cGUiDQogICksDQogIHJlbW92ZV9maXJzdF9kdW1teSA9IFRSVUUsDQogIHJlbW92ZV9zZWxlY3RlZF9jb2x1bW5zID0gVFJVRQ0KKQ0KDQp1bnN1cF9zY2FsZWQgPSBzY2FsZSh1bnN1cF9kZikNCmBgYA0KDQojIyMgMy4xLjEgREJTQ0FODQoNCmBgYHtyfQ0KbGlicmFyeShkYnNjYW4pDQoNCmRiIDwtIGRic2NhbigNCiAgdW5zdXBfc2NhbGVkLA0KICBlcHMgPSAxLjUsDQogIG1pblB0cyA9IDIwDQopDQoNCmRmX2RiIDwtIGZyYXVkX2RmICU+JQ0KICBtdXRhdGUoDQogICAgY2x1c3RlciA9IGRiJGNsdXN0ZXIsDQogICAgbm9pc2UgPSBkYiRjbHVzdGVyID09IDANCiAgKQ0KYGBgDQoNCioqRnJhdWQgcmF0ZSBj4bunYSBOb2lzZSB2cyBDbHVzdGVyKioNCg0KYGBge3J9DQpkYl9zdW1tYXJ5IDwtIGRmX2RiICU+JQ0KICBncm91cF9ieShub2lzZSkgJT4lDQogIHN1bW1hcmlzZSgNCiAgICBuID0gbigpLA0KICAgIGZyYXVkX3JhdGUgPSBtZWFuKGZyYXVkX2ZsYWcpICogMTAwDQogICkNCg0KZ2dwbG90KA0KICBkYl9zdW1tYXJ5LA0KICBhZXMoDQogICAgeCA9IGZhY3Rvcihub2lzZSksDQogICAgeSA9IGZyYXVkX3JhdGUNCiAgKQ0KKSArDQogIGdlb21fY29sKCkgKw0KICBnZW9tX3RleHQoDQogICAgYWVzKGxhYmVsID0gcm91bmQoZnJhdWRfcmF0ZSwxKSksDQogICAgdmp1c3QgPSAtMC4zDQogICkgKw0KICBsYWJzKA0KICAgIHggPSAiIiwNCiAgICB5ID0gIkZyYXVkIFJhdGUgKCUpIiwNCiAgICB0aXRsZSA9ICJGcmF1ZCBSYXRlOiBOb2lzZSB2cyBSZWd1bGFyIENsdXN0ZXJzIg0KICApICsNCiAgdGhlbWVfbWluaW1hbCgpDQpgYGANCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkZyYXVkX2RldGVjdGlvbiINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCk5vdGVib29rIG7DoHkgbcO0IHThuqMgcXV5IHRyw6xuaCBwaMOibiB0w61jaCB2w6AgZOG7sSBiw6FvIGdpYW4gbOG6rW4gZOG7sWEgdHLDqm4gYuG7mSBk4buvIGxp4buHdSBjaMawYSBnw6FuIG5ow6NuLiBO4buZaSBkdW5nIGNow61uaCBiYW8gZ+G7k206DQoNCi0gICBEYXRhIHByb2Nlc3NpbmcgYW5kIGNsZWFuaW5nDQoNCi0gICBFeHBsb3JhdG9yeSBkYXRhIGFuYWx5c2lzIChFREEpDQoNCi0gICBEZXRlY3Rpb24gbW9kZWxzDQoNCiMgMS4gRGF0YSBwcm9jZXNzaW5nIGFuZCBjbGVhbmluZw0KDQojIyAxLjEuIEltcG9ydCBkYXRkYXRhDQoNCmBgYHtyfQ0KbGlicmFyeSh0aWR5dmVyc2UpDQpmcmF1ZF9kZiA8LSByZWFkX2NzdigiQzovVXNlcnMvYWRtaW4vT25lRHJpdmUgLSBUSFBUIEzDqiBI4buTbmcgUGhvbmcvR2l0L0ZyYXVkX2RldGVjdGlvbi9iYW5raW5nX3RyYW5zYWN0aW9ucy5jc3YiKQ0KaGVhZChmcmF1ZF9kZikNCmBgYA0KDQpPdmVydmlldyB24buBIGLhu5kgZOG7ryBsaeG7h3UNCg0KYGBge3J9DQpzdHIoZnJhdWRfZGYpDQpgYGANCg0KIyMgMS4yLiBDbGVhbmluZyBkYXRhDQoNCiMjIyAxLjIuMS4gTWlzc2luZyB2YWx1ZQ0KDQpgYGB7cn0NCnNhcHBseShmcmF1ZF9kZiwgZnVuY3Rpb24oeCkgc3VtKGlzLm5hKHgpKSkNCmBgYA0KDQojIyMgMS4yLjIuIER1cGxpY2F0ZSBkYXRhDQoNCmBgYHtyfQ0Kc3VtKGR1cGxpY2F0ZWQoZnJhdWRfZGYpKQ0KYGBgDQoNCiMjIyAxLjIuMy4gQmnhur9uIMSR4buVaSBk4buvIGxp4buHdSBz4butIGThu6VuZyDEkeG7gyBwaMOibiB0w61jaA0KDQpgYGB7cn0NCkVEQV9kZiA8LSBmcmF1ZF9kZiAlPiUNCiAgbXV0YXRlKA0KICAgIA0KICAgICMgUmlzayB0aWVyDQogICAgcmlza190aWVyID0gY3V0KA0KICAgICAgYW5vbWFseV9zY29yZSwNCiAgICAgIGJyZWFrcyA9IGMoMCwgMC4zLCAwLjYsIDAuOCwgMSksDQogICAgICBsYWJlbHMgPSBjKCJMb3ciLCAiTWVkaXVtIiwgIkhpZ2giLCAiQ3JpdGljYWwiKSwNCiAgICAgIGluY2x1ZGUubG93ZXN0ID0gVFJVRQ0KICAgICksDQogICAgDQogICAgIyBUaW1lIG9mIGRheQ0KICAgIHRpbWVfb2ZfZGF5ID0gY2FzZV93aGVuKA0KICAgICAgdHJhbnNhY3Rpb25fdGltZV9ob3VyID49IDAgICYgdHJhbnNhY3Rpb25fdGltZV9ob3VyIDwgNiAgfiAiTmlnaHQiLA0KICAgICAgdHJhbnNhY3Rpb25fdGltZV9ob3VyID49IDYgICYgdHJhbnNhY3Rpb25fdGltZV9ob3VyIDwgMTIgfiAiTW9ybmluZyIsDQogICAgICB0cmFuc2FjdGlvbl90aW1lX2hvdXIgPj0gMTIgJiB0cmFuc2FjdGlvbl90aW1lX2hvdXIgPCAxOCB+ICJBZnRlcm5vb24iLA0KICAgICAgVFJVRSB+ICJFdmVuaW5nIg0KICAgICksDQogICAgDQogICAgIyBDb21wb3NpdGUgaGlnaC1yaXNrIGZsYWcNCiAgICBoaWdoX3Jpc2tfY29tYm8gPSBpZl9lbHNlKA0KICAgICAgc3VzcGljaW91c19pcF9mbGFnID09IDEgJg0KICAgICAgaW50ZXJuYXRpb25hbF90cmFuc2FjdGlvbl9mbGFnID09IDEgJg0KICAgICAgYW5vbWFseV9zY29yZSA+IDAuNywNCiAgICAgIDFMLA0KICAgICAgMEwNCiAgICApLA0KICAgIA0KICAgICMgQWNjb3VudCBtYXR1cml0eQ0KICAgIGFjY291bnRfbWF0dXJpdHkgPSBjdXQoDQogICAgICBhY2NvdW50X2FnZV9kYXlzLA0KICAgICAgYnJlYWtzID0gYygwLCAzNjUsIDczMCwgMTgyNSwgMzY1MCwgSW5mKSwNCiAgICAgIGxhYmVscyA9IGMoIjwxIHlyIiwgIjEtMiB5ciIsICIyLTUgeXIiLCAiNS0xMCB5ciIsICI+MTAgeXIiKSwNCiAgICAgIGluY2x1ZGUubG93ZXN0ID0gVFJVRQ0KICAgICksDQogICAgDQogICAgIyBBbW91bnQgdGllcg0KICAgIGFtb3VudF90aWVyID0gY3V0KA0KICAgICAgdHJhbnNhY3Rpb25fYW1vdW50LA0KICAgICAgYnJlYWtzID0gYygwLCA1MDAwLCAxMDAwMCwgMTUwMDAsIDIwMDAwLCBJbmYpLA0KICAgICAgbGFiZWxzID0gYygiPDVLIiwgIjUtMTBLIiwgIjEwLTE1SyIsICIxNS0yMEsiLCAiPjIwSyIpLA0KICAgICAgaW5jbHVkZS5sb3dlc3QgPSBUUlVFDQogICAgKQ0KICAgIA0KICApDQpgYGANCg0KIyAyLiBFREENCg0KIyMgMi4xLiBEYXRhIGFnZ3JlZ2F0aW9uDQoNCioqVMOtbmggc+G7kSBsxrDhu6NuZyB2w6AgJSBnaWFvIGThu4tjaCBmcmF1ZCB0csOqbiBjw6FjIGvDqm5oIGdpYW8gZOG7i2NoIChwYXltZW50IGNoYW5uZWwpKioNCg0KYGBge3J9DQpFREFfZGYlPiUNCiAgZ3JvdXBfYnkocGF5bWVudF9jaGFubmVsKSAlPiUNCiAgc3VtbWFyaXNlKA0KICAgIGZyYXVkX3JhdGUgPSByb3VuZChtZWFuKGZyYXVkX2ZsYWcpKjEwMCwyKSwNCiAgICBjb3VudCA9IG4oKQ0KICApDQpgYGANCg0KKipUw61uaCBz4buRIGzGsOG7o25nIHbDoCAlIGdpYW8gZOG7i2NoIGZyYXVkIHRyw6puIGPDoWMga2nhu4N1IHjDoWMgdGjhu7FjIChhdXRoZW50aWNhdGlvbiB0eXBlKSoqDQoNCmBgYHtyfQ0KRURBX2RmJT4lDQogIGdyb3VwX2J5KGF1dGhlbnRpY2F0aW9uX3R5cGUpICU+JQ0KICBzdW1tYXJpc2UoDQogICAgZnJhdWRfcmF0ZSA9IHJvdW5kKG1lYW4oZnJhdWRfZmxhZykqMTAwLDIpLA0KICAgIGNvdW50ID0gbigpDQogICkNCmBgYA0KDQoqKkPDoWMgdGjhu51pIMSRaeG7g20gaGF5IHjhuqN5IHJhIGPDoWMgZ2lhbyBk4buLY2ggZ2lhbiBs4bqtbjoqKg0KDQpgYGB7cn0NCkVEQV9kZiU+JQ0KICBncm91cF9ieSh0cmFuc2FjdGlvbl90aW1lX2hvdXIpICU+JQ0KICBzdW1tYXJpc2UoDQogICAgZnJhdWRfcmF0ZSA9IHJvdW5kKG1lYW4oZnJhdWRfZmxhZyksNCksDQogICAgdm9sdW1lID0gbigpDQogICklPiUNCiAgYXJyYW5nZShkZXNjKGZyYXVkX3JhdGUpKSU+JQ0KICBzbGljZV9oZWFkKG4gPSA1KQ0KYGBgDQoNCioqQ8OhYyBnaWFvIGThu4tjaCBnaWFuIGzhuq1uIHjhuqN5IHJhIOG7nyBjw6FjIHTDoGkga2hv4bqjbiBt4bufIHThu6sgMSAtIDIgbsSDbToqKg0KDQpgYGB7cn0NCkVEQV9kZiU+JQ0KICBncm91cF9ieShhY2NvdW50X21hdHVyaXR5KSAlPiUNCiAgc3VtbWFyaXNlKA0KICAgIGZyYXVkX3JhdGUgPSByb3VuZChtZWFuKGZyYXVkX2ZsYWcpLDQpLA0KICAgIGNvdW50ID0gbigpKQ0KYGBgDQoNCiMjIDIuMi4gVmlzdWFsaXphdGlvbg0KDQojIyMgMi4yLjEuIFBow6JuIHBo4buRaSBj4bunYSBhbm9tYWx5X3Njb3JlDQoNCmBgYHtyfQ0KZ2dwbG90KA0KICBmcmF1ZF9kZiwNCiAgYWVzKA0KICAgIHggPSBhbm9tYWx5X3Njb3JlLA0KICAgIGZpbGwgPSBmcmF1ZF9mbGFnLA0KICAgIGNvbG9yID0gZnJhdWRfZmxhZw0KICApDQopICsNCg0KICBnZW9tX2RlbnNpdHkoDQogICAgYWxwaGEgPSAwLjMNCiAgKSArDQoNCiAgZ2VvbV92bGluZSgNCiAgICB4aW50ZXJjZXB0ID0gMC43LA0KICAgIGNvbG9yID0gInJlZCIsDQogICAgbGluZXR5cGUgPSAiZGFzaGVkIiwNCiAgICBsaW5ld2lkdGggPSAxDQogICkgKw0KDQoNCiAgbGFicygNCiAgICB0aXRsZSA9ICJEaXN0cmlidXRpb24gb2YgQW5vbWFseSBTY29yZXMiLA0KICAgIHN1YnRpdGxlID0gIkZyYXVkdWxlbnQgdHJhbnNhY3Rpb25zIHRlbmQgdG8gZXhoaWJpdCBoaWdoZXIgYW5vbWFseSBzY29yZXMiLA0KICAgIHggPSAiQW5vbWFseSBTY29yZSIsDQogICAgeSA9ICJEZW5zaXR5Ig0KICApICsNCg0KICB0aGVtZV9taW5pbWFsKGJhc2Vfc2l6ZSA9IDEzKQ0KYGBgDQoNCiMjIyAyLjIuMi4gUmlzayBoZWF0bWFwIHRoZW8gZ2nhu50gZ2lhbyBk4buLY2gNCg0KYGBge3J9DQpob3VybHlfZGF0YSA8LSBFREFfZGYgJT4lDQogIGdyb3VwX2J5KHRyYW5zYWN0aW9uX3RpbWVfaG91cikgJT4lDQogIHN1bW1hcmlzZSgNCiAgICBmcmF1ZF9yYXRlID0gcm91bmQobWVhbihmcmF1ZF9mbGFnKSAqIDEwMCwgNCkNCiAgKSAlPiUNCiAgYXJyYW5nZSh0cmFuc2FjdGlvbl90aW1lX2hvdXIpJT4lDQogIG11dGF0ZSgNCiAgICBwZXJpb2QgPSBpZmVsc2UoDQogICAgICB0cmFuc2FjdGlvbl90aW1lX2hvdXIgPCAxMiwNCiAgICAgICJBTSIsDQogICAgICAiUE0iDQogICAgKSwNCg0KICAgIGhvdXJfMTIgPSBjYXNlX3doZW4oDQogICAgICB0cmFuc2FjdGlvbl90aW1lX2hvdXIgPT0gMCB+IDEyLA0KICAgICAgdHJhbnNhY3Rpb25fdGltZV9ob3VyID09IDEyIH4gMTIsDQogICAgICBUUlVFIH4gdHJhbnNhY3Rpb25fdGltZV9ob3VyICUlIDEyDQogICAgKQ0KICApDQoNCg0KZ2dwbG90KA0KICBob3VybHlfZGF0YSwNCiAgYWVzKA0KICAgIHggPSBmYWN0b3IoaG91cl8xMiwNCiAgICAgICAgICAgICAgIGxldmVscyA9IGMoMTIsMSwyLDMsNCw1LDYsNyw4LDksMTAsMTEpKSwNCiAgICB5ID0gcGVyaW9kLA0KICAgIGZpbGwgPSBmcmF1ZF9yYXRlDQogICkNCikgKw0KDQogIGdlb21fdGlsZSgNCiAgICBjb2xvciA9ICJ3aGl0ZSIsDQogICAgbGluZXdpZHRoID0gMC43DQogICkgKw0KDQogIGdlb21fdGV4dCgNCiAgICBhZXMoDQogICAgICBsYWJlbCA9IHNwcmludGYoIiUuMWYlJSIsIGZyYXVkX3JhdGUpLA0KICAgICAgY29sb3IgPSBmcmF1ZF9yYXRlID4gbWVkaWFuKGZyYXVkX3JhdGUpDQogICAgKSwNCiAgICBzaXplID0gMiwNCiAgICBmb250ZmFjZSA9ICJib2xkIg0KICApICsNCg0KICBzY2FsZV9maWxsX2dyYWRpZW50bigNCiAgICBjb2xvdXJzID0gYygNCiAgICAgICIjRDRGMUY0IiwNCiAgICAgICIjRjRBMjYxIiwNCiAgICAgICIjRTYzOTQ2Ig0KICAgICksDQogICAgbmFtZSA9ICJGcmF1ZCBSYXRlICUiDQogICkgKw0KDQogIHNjYWxlX2NvbG9yX21hbnVhbCgNCiAgICB2YWx1ZXMgPSBjKA0KICAgICAgIlRSVUUiID0gIndoaXRlIiwNCiAgICAgICJGQUxTRSIgPSAiIzMzMzMzMyINCiAgICApLA0KICAgIGd1aWRlID0gIm5vbmUiDQogICkgKw0KDQogIGxhYnMoDQogICAgdGl0bGUgPSAiRnJhdWQgUmF0ZSAoJSkgYnkgSG91ciBvZiBEYXkiLA0KICAgIHN1YnRpdGxlID0gIkFNIHZzIFBNIENvbXBhcmlzb24iLA0KICAgIHggPSBOVUxMLA0KICAgIHkgPSBOVUxMDQogICkgKw0KDQogIHRoZW1lX21pbmltYWwoYmFzZV9zaXplID0gMTIpICsNCg0KICB0aGVtZSgNCiAgICBwYW5lbC5ncmlkID0gZWxlbWVudF9ibGFuaygpLA0KDQogICAgYXhpcy50ZXh0LnggPSBlbGVtZW50X3RleHQoDQogICAgICBzaXplID0gMTEsDQogICAgICBmYWNlID0gImJvbGQiDQogICAgKSwNCg0KICAgIGF4aXMudGV4dC55ID0gZWxlbWVudF90ZXh0KA0KICAgICAgc2l6ZSA9IDEyLA0KICAgICAgZmFjZSA9ICJib2xkIg0KICAgICksDQoNCiAgICBwbG90LnRpdGxlID0gZWxlbWVudF90ZXh0KA0KICAgICAgc2l6ZSA9IDE2LA0KICAgICAgZmFjZSA9ICJib2xkIiwNCiAgICAgIGhqdXN0ID0gMC41DQogICAgKSwNCg0KICAgIHBsb3Quc3VidGl0bGUgPSBlbGVtZW50X3RleHQoDQogICAgICBoanVzdCA9IDAuNQ0KICAgICkNCiAgKQ0KYGBgDQoNCiMgMy4gRGV0ZWN0aW9uIG1vZGVscw0KDQojIyAzLjEuIFVuc3VwZXJ2aXNlZCBsZWFybmluZw0KDQpUcsaw4bubYyBo4bq/dCBj4bqnbiB44butIGzDvSBk4buvIGxp4buHdSDEkeG7gyBjaOG6oXkgdGh14bqtdCB0b8OhbiBJc29sYXRpb24gZm9yZXN0DQoNCmBgYHtyfQ0KbGlicmFyeShmYXN0RHVtbWllcykNCg0KdW5zdXBfZGYgPC0gZnJhdWRfZGYgJT4lDQogIHNlbGVjdCgtdHJhbnNhY3Rpb25faWQsIC1mcmF1ZF9mbGFnKQ0KDQp1bnN1cF9kZiA8LSBkdW1teV9jb2xzKA0KICB1bnN1cF9kZiwNCiAgc2VsZWN0X2NvbHVtbnMgPSBjKA0KICAgICJwYXltZW50X2NoYW5uZWwiLA0KICAgICJhdXRoZW50aWNhdGlvbl90eXBlIg0KICApLA0KICByZW1vdmVfZmlyc3RfZHVtbXkgPSBUUlVFLA0KICByZW1vdmVfc2VsZWN0ZWRfY29sdW1ucyA9IFRSVUUNCikNCg0KdW5zdXBfc2NhbGVkID0gc2NhbGUodW5zdXBfZGYpDQpWaWV3KHVuc3VwX3NjYWxlZCkNCmBgYA0KDQpUaOG7sWMgaGnhu4duIGNo4bqheSB0aHXhuq10IHRvw6FuIGlzb2xhdGlvbiBmb3Jlc3QNCg0KYGBge3J9DQojVHJhaW5pbmcNCmxpYnJhcnkoc29saXR1ZGUpDQoNCmlzbyA8LSBpc29sYXRpb25Gb3Jlc3QkbmV3KA0KICBzYW1wbGVfc2l6ZSA9IDI1NiwNCiAgbnVtX3RyZWVzID0gMTAwLA0KICBzZWVkID0gMTIzDQopDQoNCmlzbyRmaXQoYXMuZGF0YS5mcmFtZSh1bnN1cF9zY2FsZWQpKQ0KDQojU2luaCBhbm9tYWx5X3Njb3JlDQppc29fc2NvcmVzIDwtIGlzbyRwcmVkaWN0KA0KICBhcy5kYXRhLmZyYW1lKHVuc3VwX3NjYWxlZCkNCikNCg0KDQpkZl9pc28gPC0gZnJhdWRfZGYgJT4lDQogIG11dGF0ZSgNCiAgICBpZm9yZXN0X3Njb3JlID0gaXNvX3Njb3JlcyRhbm9tYWx5X3Njb3JlDQogICkNCg0KI1RvcCBhbm9tYWxpZXMNCmRmX2lzbyAlPiUNCiAgYXJyYW5nZShkZXNjKGlmb3Jlc3Rfc2NvcmUpKSAlPiUNCiAgc2VsZWN0KA0KICAgIGlmb3Jlc3Rfc2NvcmUsDQogICAgZnJhdWRfZmxhZywNCiAgICBhbm9tYWx5X3Njb3JlLA0KICAgIHRyYW5zYWN0aW9uX2Ftb3VudA0KICApICU+JQ0KICBoZWFkKDIwKQ0KYGBgDQoNCmBgYHtyfQ0KZGZfaXNvIDwtIGRmX2lzbyAlPiUNCiAgbXV0YXRlKA0KICAgIGRlY2lsZSA9IG50aWxlKGlmb3Jlc3Rfc2NvcmUsIDEwKQ0KICApDQoNCmZyYXVkX2RlY2lsZSA8LSBkZl9pc28gJT4lDQogIGdyb3VwX2J5KGRlY2lsZSkgJT4lDQogIHN1bW1hcmlzZSgNCiAgICBmcmF1ZF9yYXRlID0gbWVhbihmcmF1ZF9mbGFnKSAqIDEwMA0KICApDQoNCmdncGxvdCgNCiAgZnJhdWRfZGVjaWxlLA0KICBhZXMoDQogICAgZmFjdG9yKGRlY2lsZSksDQogICAgZnJhdWRfcmF0ZQ0KICApDQopICsNCiAgZ2VvbV9jb2woZmlsbCA9ICIjRTYzOTQ2IikgKw0KICBnZW9tX3RleHQoDQogICAgYWVzKGxhYmVsID0gc3ByaW50ZigiJS4xZiUlIiwgZnJhdWRfcmF0ZSkpLA0KICAgIHZqdXN0ID0gLTAuMywNCiAgICBmb250ZmFjZSA9ICJib2xkIg0KICApICsNCiAgbGFicygNCiAgICB0aXRsZSA9ICJGcmF1ZCBSYXRlIGJ5IElzb2xhdGlvbiBGb3Jlc3QgUmlzayBEZWNpbGUiLA0KICAgIHggPSAiSXNvbGF0aW9uIEZvcmVzdCBEZWNpbGUiLA0KICAgIHkgPSAiRnJhdWQgUmF0ZSAoJSkiDQogICkgKw0KICB0aGVtZV9taW5pbWFsKCkNCmBgYA0KDQoqKi1cPiBOaMOzbSBjw6FjIGdpYW8gZOG7i2NoIGPDsyBJRiBzY29yZSBjw6BuZyBuaOG7jyB0aMOsIHPhu5EgbMaw4bujbmcgZnJhdWQgdGjhu7FjIHThur8gY8OgbmcgY2FvKioNCg0KIyMgMy4yLiBTdXBlcnZpc2VkIG1vZGVsDQoNCkJp4bq/biDEkeG7lWkgZOG7ryBsaeG7h3UNCg0KYGBge3J9DQpkZl9tb2RlbCA8LSBmcmF1ZF9kZiAlPiUNCiAgc2VsZWN0KC10cmFuc2FjdGlvbl9pZCklPiUNCiAgbXV0YXRlKA0KICAgIGZyYXVkX2ZsYWcgPSBhcy5mYWN0b3IoZnJhdWRfZmxhZyksDQogICAgcGF5bWVudF9jaGFubmVsID0gYXMuZmFjdG9yKHBheW1lbnRfY2hhbm5lbCksDQogICAgYXV0aGVudGljYXRpb25fdHlwZSA9IGFzLmZhY3RvcihhdXRoZW50aWNhdGlvbl90eXBlKQ0KICApDQoNCnN0cihkZl9tb2RlbCkNCg0KVmlldyhkZl9tb2RlbCkNCmBgYA0KDQpDaGlhIGThu68gbGnhu4d1IHRow6BuaCB04bqtcCB0cmFpbi90ZXN0DQoNCmBgYHtyfQ0KbGlicmFyeShjYXJldCkNCg0Kc2V0LnNlZWQoMTIzKQ0KDQp0cmFpbl9pZHggPC0gY3JlYXRlRGF0YVBhcnRpdGlvbigNCiAgZGZfbW9kZWwkZnJhdWRfZmxhZywNCiAgcCA9IDAuOCwNCiAgbGlzdCA9IEZBTFNFDQopDQoNCnRyYWluX3NldCA8LSBkZl9tb2RlbFt0cmFpbl9pZHgsIF0NCnRlc3Rfc2V0ICA8LSBkZl9tb2RlbFstdHJhaW5faWR4LCBdDQpgYGANCg0KIyMjIDMuMi4xLiBSYW5kb20gZm9yZXN0DQoNCsav4bubYyBsxrDhu6NuZyBtw7QgaMOsbmgNCg0KYGBge3J9DQpsaWJyYXJ5KHJhbmRvbUZvcmVzdCkNCg0KcmZfbW9kZWwgPC0gcmFuZG9tRm9yZXN0KA0KICBmcmF1ZF9mbGFnIH4gLiwNCiAgZGF0YSA9IHRyYWluX3NldCwNCiAgbnRyZWUgPSA1MDAsDQogIGltcG9ydGFuY2UgPSBUUlVFDQopDQpgYGANCg0KROG7sSBiw6FvDQoNCmBgYHtyfQ0KcmZfcHJvYiA8LSBwcmVkaWN0KA0KICByZl9tb2RlbCwNCiAgdGVzdF9zZXQsDQogIHR5cGUgPSAicHJvYiINCilbLDJdDQpgYGANCg0KVMOtbmggdG/DoW4gUk9DIC0gQVVDDQoNCmBgYHtyfQ0KbGlicmFyeShwUk9DKQ0KDQpyb2NfcmYgPC0gcm9jKA0KICB0ZXN0X3NldCRmcmF1ZF9mbGFnLA0KICByZl9wcm9iDQopDQoNCmF1Yyhyb2NfcmYpDQpgYGANCg0KIyMjIDMuMi4yLiBYR0Jvb3N0DQoNCkNodeG6qW4gYuG7iyBk4buvIGxp4buHdSBjaG8gdGh14bqtdCB0b8Ohbg0KDQpgYGB7cn0NCmxpYnJhcnkoY2FyZXQpDQpkdW1teSA8LSBkdW1teVZhcnMoDQogIGZyYXVkX2ZsYWcgfiAuLA0KICBkYXRhID0gZGZfbW9kZWwgDQopDQoNCnRyYWluX3ggPC0gcHJlZGljdChkdW1teSwgdHJhaW5fc2V0KQ0KdGVzdF94ICA8LSBwcmVkaWN0KGR1bW15LCB0ZXN0X3NldCkNCg0KI1RhcmdldCANCnRyYWluX3kgPC0gaWZlbHNlKA0KICB0cmFpbl9zZXQkZnJhdWRfZmxhZyA9PSBUUlVFLA0KICAxLA0KICAwDQopDQoNCnRlc3RfeSA8LSBpZmVsc2UoDQogIHRlc3Rfc2V0JGZyYXVkX2ZsYWcgPT0gVFJVRSwNCiAgMSwNCiAgMA0KKQ0KDQojRG1hdHJpeCANCmxpYnJhcnkoeGdib29zdCkNCg0KZHRyYWluIDwtIHhnYi5ETWF0cml4KA0KICBkYXRhID0gdHJhaW5feCwNCiAgbGFiZWwgPSB0cmFpbl95DQopDQoNCmR0ZXN0IDwtIHhnYi5ETWF0cml4KA0KICBkYXRhID0gdGVzdF94LA0KICBsYWJlbCA9IHRlc3RfeQ0KKQ0KYGBgDQoNClRyYWluaW5nDQoNCmBgYHtyfQ0KeGdiX21vZGVsIDwtIHhnYm9vc3QoDQogIGRhdGEgPSBkdHJhaW4sDQogIG5yb3VuZHMgPSAyMDAsDQogIG9iamVjdGl2ZSA9ICJiaW5hcnk6bG9naXN0aWMiLA0KICBldmFsX21ldHJpYyA9ICJhdWMiLA0KICBtYXhfZGVwdGggPSA2LA0KICBldGEgPSAwLjA1LA0KICB2ZXJib3NlID0gMA0KKQ0KYGBgDQoNClByZWRpY3QNCg0KYGBge3J9DQp4Z2JfcHJvYiA8LSBwcmVkaWN0KA0KICB4Z2JfbW9kZWwsDQogIGR0ZXN0DQopDQpgYGANCg0KVMOtbmggdG/DoW4gcm9jLWF1Yw0KDQpgYGB7cn0NCnJvY194Z2IgPC0gcm9jKA0KICB0ZXN0X3ksDQogIHhnYl9wcm9iDQopDQoNCmF1Yyhyb2NfeGdiKQ0KYGBgDQoNCiMjIyAzLjIuMy4gU28gc8OhbmggMiBtw7QgaMOsbmgNCg0KUk9DIEN1cnZlDQoNCmBgYHtyfQ0KcGxvdCgNCiAgcm9jX3JmLA0KICBjb2wgPSAiYmx1ZSINCikNCg0KcGxvdCgNCiAgcm9jX3hnYiwNCiAgYWRkID0gVFJVRSwNCiAgY29sID0gInJlZCINCikNCg0KbGVnZW5kKA0KICAiYm90dG9tcmlnaHQiLA0KICBsZWdlbmQgPSBjKCJSRiIsICJYR0IiKSwNCiAgY29sID0gYygiYmx1ZSIsICJyZWQiKSwNCiAgbHdkID0gMg0KKQ0KYGBgDQo=</div>
 
 
 
